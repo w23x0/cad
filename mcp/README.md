@@ -49,7 +49,7 @@ Register the server with any MCP client:
   "mcpServers": {
     "cad": {
       "command": "/path/to/.venv/bin/python",
-      "args": ["/path/to/cad-harness/mcp/server.py"],
+      "args": ["/path/to/cad/mcp/server.py"],
       "env": {
         "CAD_B123D_PYTHON": "/path/to/.venv/bin/python",
         "CAD_SMLIBPY_PYTHON": "/path/to/.venv-smlib/bin/python",

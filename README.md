@@ -1,4 +1,4 @@
-# cad-harness
+# cad
 
 Two independent CAD kernels, one verification contract, one MCP interface — built for AI agents that must check their own geometry.
 
@@ -22,7 +22,7 @@ They share no geometry code. If volume, bounding box, solid count and validity a
 ## Quick start
 
 ```bash
-git clone <this repo> && cd cad-harness
+git clone <this repo> && cd cad
 uv venv --python 3.13 .venv
 uv pip install build123d ezdxf trimesh cairosvg mcp
 
@@ -96,7 +96,7 @@ Client config (Claude Desktop / Claude Code, Codex, opencode, omp):
   "mcpServers": {
     "cad": {
       "command": "/path/to/.venv/bin/python",
-      "args": ["/path/to/cad-harness/mcp/server.py"],
+      "args": ["/path/to/cad/mcp/server.py"],
       "env": {
         "CAD_B123D_PYTHON": "/path/to/.venv/bin/python",
         "CAD_SMLIBPY_PYTHON": "/path/to/.venv-smlib/bin/python",
