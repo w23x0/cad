@@ -1,0 +1,15 @@
+# Python
+.venv/
+.venv-*/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Generated model output
+out/
+bench/*/out/
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/

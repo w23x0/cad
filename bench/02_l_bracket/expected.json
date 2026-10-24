@@ -1,0 +1,10 @@
+{
+  "description": "L bracket, 60x50 profile extruded 40, 2x M8 holes",
+  "metrics": {
+    "volume_mm3": 35978.761403405064,
+    "bbox_mm": [60, 50, 40],
+    "solids": 1,
+    "valid": true
+  },
+  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6 }
+}
