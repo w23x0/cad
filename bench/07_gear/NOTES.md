@@ -29,3 +29,7 @@ Sanity: for radial flanks (t1 = t2) this reduces to t*(r2^2 - r1^2), the annular
 
     V = (pi*r1^2 + N*A_tooth)*h - pi*r_bore^2*h
       = 3640*pi + 120*A_tooth = 11032*pi/3 + 62400*sin(4 deg) = 15905.487346434285 mm^3
+
+## 质心手算
+
+质心：轴对称且 z 对称（Cylinder 与 both=True 挤出均居中）→ (0,0,0)。

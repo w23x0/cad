@@ -2,9 +2,21 @@
   "description": "90x60x40 thin-wall box, wall 2, open top, 2mm internal web, O10 drain hole in front wall",
   "metrics": {
     "volume_mm3": 39370.92036732051,
-    "bbox_mm": [90, 60, 40],
+    "bbox_mm": [
+      90,
+      60,
+      40
+    ],
     "solids": 1,
-    "valid": true
+    "valid": true,
+    "centroid_mm": [
+      -0.11969212140380053,
+      -0.11570238402367385,
+      15.549624918496951
+    ]
   },
-  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6 }
+  "tolerance": {
+    "volume_rel": 1e-06,
+    "bbox_abs": 1e-06
+  }
 }

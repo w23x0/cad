@@ -61,16 +61,21 @@ def metrics_of(shape, engine: str) -> dict:
         valid = bool(shape.is_valid)
         faces = len(shape.faces())
         edges = len(shape.edges())
+        c = shape.center()
+        centroid = [float(c.X), float(c.Y), float(c.Z)]
     else:
         bb = shape.bbox()
         size = [float(bb.max[i] - bb.min[i]) for i in range(3)]
         valid = bool(shape.is_valid())
         faces = len(shape.faces())
         edges = len(shape.edges())
+        c = shape.center()
+        centroid = [float(c[0]), float(c[1]), float(c[2])]
     return {
         "engine": engine,
         "volume_mm3": float(shape.volume),
         "bbox_mm": size,
+        "centroid_mm": centroid,
         "solids": len(shape.solids()),
         "faces": faces,
         "edges": edges,

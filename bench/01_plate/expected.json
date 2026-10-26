@@ -2,9 +2,21 @@
   "description": "80x60x10 plate, 4x M8 through holes, 30x20x4 central pocket",
   "metrics": {
     "volume_mm3": 43589.38070170253,
-    "bbox_mm": [80, 60, 10],
+    "bbox_mm": [
+      80,
+      60,
+      10
+    ],
     "solids": 1,
-    "valid": true
+    "valid": true,
+    "centroid_mm": [
+      0.0,
+      0.0,
+      -0.16517784570678196
+    ]
   },
-  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6 }
+  "tolerance": {
+    "volume_rel": 1e-06,
+    "bbox_abs": 1e-06
+  }
 }

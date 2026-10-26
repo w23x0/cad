@@ -2,9 +2,21 @@
   "description": "Simplified spur gear: 12 straight-flank trapezoidal teeth, r_root 20, r_tip 26, h 10, bore r6",
   "metrics": {
     "volume_mm3": 15905.487346434285,
-    "bbox_mm": [52, 52, 10],
+    "bbox_mm": [
+      52,
+      52,
+      10
+    ],
     "solids": 1,
-    "valid": true
+    "valid": true,
+    "centroid_mm": [
+      0.0,
+      0.0,
+      0.0
+    ]
   },
-  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6 }
+  "tolerance": {
+    "volume_rel": 1e-06,
+    "bbox_abs": 1e-06
+  }
 }

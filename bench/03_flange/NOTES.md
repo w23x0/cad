@@ -9,3 +9,7 @@ patterns on both kernels.
 - Bounding box 60 x 60 x 10
 
 Expected volume = π*(30² - 10² - 6*3²)*10 = 23436.2812 mm³
+
+## 质心手算
+
+质心：轴对称且 z 对称 → (0,0,0)。

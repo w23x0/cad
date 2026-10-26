@@ -2,9 +2,21 @@
   "description": "Ø60x10 flange, Ø20 bore, 6x Ø6 holes on Ø46 bolt circle",
   "metrics": {
     "volume_mm3": 23436.281195779855,
-    "bbox_mm": [60, 60, 10],
+    "bbox_mm": [
+      60,
+      60,
+      10
+    ],
     "solids": 1,
-    "valid": true
+    "valid": true,
+    "centroid_mm": [
+      0.0,
+      0.0,
+      0.0
+    ]
   },
-  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6 }
+  "tolerance": {
+    "volume_rel": 1e-06,
+    "bbox_abs": 1e-06
+  }
 }

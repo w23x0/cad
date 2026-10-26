@@ -53,7 +53,7 @@ ENGINES = {
     "smlibpy": ("smlibpy", _smlibpy_python()),
 }
 
-DEFAULT_TOL = {"volume_rel": 1e-6, "bbox_abs": 1e-6, "volume_abs": 1e-6}
+DEFAULT_TOL = {"volume_rel": 1e-6, "bbox_abs": 1e-6, "volume_abs": 1e-6, "centroid_abs": 1e-6}
 
 
 def find_folders(paths):
@@ -108,6 +108,14 @@ def check_expected(metrics, expected, tol):
         for i, axis in enumerate("XYZ"):
             if abs(metrics["bbox_mm"][i] - float(tgt[i])) > tol["bbox_abs"]:
                 problems.append(f"bbox {axis} {metrics['bbox_mm'][i]:.6f} != {float(tgt[i]):.6f}")
+    ce = m.get("centroid_mm")
+    if ce is not None:
+        tgt = ce["value"] if isinstance(ce, dict) else ce
+        for i, axis in enumerate("XYZ"):
+            if abs(metrics["centroid_mm"][i] - float(tgt[i])) > tol["centroid_abs"]:
+                problems.append(
+                    f"centroid {axis} {metrics['centroid_mm'][i]:.6f} != {float(tgt[i]):.6f}"
+                )
     for key in ("solids", "faces", "edges"):
         if key in m:
             tgt = m[key]["value"] if isinstance(m[key], dict) else m[key]
@@ -127,6 +135,8 @@ def check_cross(metrics_a, metrics_b, tol):
     for i, axis in enumerate("XYZ"):
         if abs(metrics_a["bbox_mm"][i] - metrics_b["bbox_mm"][i]) > tol["bbox_abs"]:
             problems.append(f"cross bbox {axis} mismatch")
+        if abs(metrics_a["centroid_mm"][i] - metrics_b["centroid_mm"][i]) > tol["centroid_abs"]:
+            problems.append(f"cross centroid {axis} mismatch")
     if metrics_a["solids"] != metrics_b["solids"]:
         problems.append("cross solids mismatch")
     if metrics_a["valid"] != metrics_b["valid"]:

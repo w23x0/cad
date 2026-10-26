@@ -54,15 +54,19 @@ Exit code is `0` only when all engines match `expected.json` **and** each other.
   "metrics": {
     "volume_mm3": 43589.38070170253,
     "bbox_mm": [80, 60, 10],
+    "centroid_mm": [0, 0, -0.16517784570678196],
     "solids": 1,
     "valid": true
   },
-  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6 }
+  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6, "centroid_abs": 1e-6 }
 }
 ```
 
 Write the volume from the **hand calculation**, not from a run. Optional
 `engine_metrics` records kernel-specific topology (face/edge counts legitimately differ).
+`centroid_mm` (optional, volume centroid) catches models whose volume and bbox match
+but whose material distribution is wrong; every current part carries a hand-derived
+centroid in its `NOTES.md`.
 
 Models only expose `result = <shape>` (or `def build()`); the harness does the
 measuring and exporting. Generated files go to `bench/<part>/out/<engine>/`:

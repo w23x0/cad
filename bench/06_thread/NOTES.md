@@ -31,3 +31,7 @@ A' = 1/2 * 2 * 2 = 2, centroid radius rbar' = (10 + 12 + 12)/3 = 34/3 (triangle 
 Per groove V_g = 2*pi*A'*rbar' = 136*pi/3; total removed = 5 * 136*pi/3 = 680*pi/3.
 
 V = pi*12^2*24 - 680*pi/3 = (10368 - 680)/3 * pi = 9688*pi/3 = 10145.249875992638 mm^3
+
+## 质心手算
+
+质心：轴对称且槽位关于 z=0 对称 → (0,0,0)。
