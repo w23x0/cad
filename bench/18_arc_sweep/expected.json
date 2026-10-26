@@ -1,0 +1,23 @@
+{
+  "description": "270-degree arc sweep of a O10 circle along R20 arc - three-quarter torus, Pappus-sweep truth",
+  "metrics": {
+    "volume_mm3": 7402.203300817018,
+    "bbox_mm": [
+      50,
+      50,
+      10
+    ],
+    "centroid_mm": [
+      -4.3104463754054985,
+      4.3104463754054985,
+      0.0
+    ],
+    "solids": 1,
+    "valid": true
+  },
+  "tolerance": {
+    "volume_rel": 1e-06,
+    "bbox_abs": 1e-05,
+    "centroid_abs": 1e-06
+  }
+}
