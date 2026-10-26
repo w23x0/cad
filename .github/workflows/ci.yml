@@ -1,0 +1,57 @@
+# CI for the harness: verify every bench model on both CAD kernels, then run
+# the MCP server end-to-end tests. Both kernel venvs are Python 3.13 (see the
+# smlibpy step comment for why that works for the SMLib line too).
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      # Both scripts below auto-discover the kernels via these variables.
+      CAD_B123D_PYTHON: ${{ github.workspace }}/.venv-b123d/bin/python
+      CAD_SMLIBPY_PYTHON: ${{ github.workspace }}/.venv-smlib/bin/python
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      # build123d (OCCT) toolchain plus the MCP package that mcp/server.py
+      # imports, and the render/export helpers used by mcp/worker.py.
+      - name: Create the build123d venv (Python 3.13)
+        run: |
+          uv venv .venv-b123d --python 3.13
+          uv pip install --python .venv-b123d/bin/python \
+            build123d ezdxf trimesh cairosvg mcp
+
+      # smlibpy runs in its own venv to keep the two dependency trees isolated.
+      # Python 3.13 (same as build123d): smlibpy declares requires-python
+      # >=3.10 and publishes cp312/cp313/cp314 manylinux wheels for 0.3.x-0.5.x,
+      # so no older interpreter is needed. Pinned to 0.3.3 because that is the
+      # version the harness and bench expectations are verified against.
+      - name: Create the smlibpy venv (Python 3.13)
+        run: |
+          uv venv .venv-smlib --python 3.13
+          uv pip install --python .venv-smlib/bin/python "smlibpy==0.3.3"
+
+      - name: Verify bench models (both kernels)
+        run: |
+          "$CAD_B123D_PYTHON" verify/verify.py
+
+      - name: MCP server end-to-end tests
+        run: |
+          "$CAD_B123D_PYTHON" mcp/test_server.py

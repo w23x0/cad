@@ -1,0 +1,10 @@
+{
+  "description": "Knob (R20x8 base, 12->9x12 frustum, r8 hemisphere top, 4x O4 axial holes) + separate O-ring torus R10 r2 beside it; 2 solids",
+  "metrics": {
+    "volume_mm3": 15697.472690921913,
+    "bbox_mm": [66, 40, 28],
+    "solids": 2,
+    "valid": true
+  },
+  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6 }
+}

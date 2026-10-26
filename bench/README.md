@@ -12,6 +12,7 @@ independent kernels. Metrics must match `expected.json` **and** each other.
 | `05_assembly` | multi-solid exploded assembly (4 solids), clearance collar, additive volume | 43893.9637 |
 | `06_thread` | revolved V-grooves (Pappus truth); helical-sweep parity investigated | 10145.2499 |
 | `07_gear` | simplified straight-flank gear, polar pattern of lines+arcs, exact tooth-area integral | 15905.4873 |
+| `08_knob` | cone frustum + hemisphere stack, axial hole pattern, disjoint O-ring torus (2 solids) | 15697.4727 |
 
 ## Adding a part
 
@@ -35,17 +36,24 @@ kernel, rerun it, and regressions show up immediately.
 
 ## Current status
 
-7 parts, 14 implementations, all passing with relative error < 1e-6 (max observed
+8 parts, 16 implementations, all passing with relative error < 1e-6 (max observed
 ~9e-9). No tolerance loosened so far.
 
 ## Kernel findings
+
+Kernel-level divergences are documented in [`../FINDINGS.md`](../FINDINGS.md)
+(smlibpy overlapping-union bug with Monte-Carlo arbitration, helical-sweep
+non-parity). Summary:
 
 - **Helical sweeps are not kernel-portable.** The same rigid-helical sweep intent
   (axial triangular profile, `binormal=Axis.Z` on the OCCT side) differs by ~0.7%
   between kernels, and smlibpy's sweep reorients the profile perpendicular to the
   path. That is why `06_thread` uses revolved V-grooves with a Pappus-theorem
-  truth instead of a real helix. Details in `06_thread/NOTES.md`; a true helical
-  thread needs a cross-kernel sweep parity solution first.
+  truth instead of a real helix.
+- **smlibpy overlapping booleans are unreliable** (F-1): union/cut/intersect of
+  non-piercing overlapping solids return wrong results on 0.3.3 AND 0.5.0.
+  Bench parts therefore stick to the verified-safe paths: piercing cuts,
+  face-contact fuses, disjoint fuses. `08_knob` was redesigned v1→v2 for this.
 - **Touching solids fuse identically on both kernels.** In `05_assembly`, parts
   in face contact merge into one solid (solids 2, same volume); the final design
   uses explicit gaps so the part really exercises multi-solid handling.

@@ -60,6 +60,23 @@ Register the server with any MCP client:
 }
 ```
 
+## Running the e2e tests
+
+`test_server.py` launches the real server and drives the whole tool contract
+over stdio (initialize → tools/list → engines → run_script on both kernels →
+measure → export → snapshot → reset). Stdlib only; exit code 0 = all checks
+passed. Run it with the interpreter that has the `mcp` package:
+
+```sh
+CAD_B123D_PYTHON=/path/to/.venv/bin/python \
+CAD_SMLIBPY_PYTHON=/path/to/.venv-smlib/bin/python \
+    /path/to/.venv/bin/python mcp/test_server.py
+```
+
+The interpreters default to the same fallbacks as the server; output goes to a
+temporary `CAD_OUT` that is removed afterwards. CI runs this in
+`.github/workflows/ci.yml`.
+
 ## Adding a third kernel
 
 1. Add `name -> interpreter` to `ENGINE_PYTHON` in `server.py`.
