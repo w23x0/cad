@@ -1,0 +1,15 @@
+{
+  "description": "Lower half of a split bearing: 60x40x20 block with O12 Z-bore, split by XZ plane keeping y<0 (half-cylinder trough on the cut face)",
+  "metrics": {
+    "volume_mm3": 22869.026644707676,
+    "bbox_mm": [60, 20, 20],
+    "centroid_mm": [0.0, -10.368609197229391, 0.0],
+    "solids": 1,
+    "valid": true
+  },
+  "engine_metrics": {
+    "build123d": { "faces": 8 },
+    "smlibpy": { "faces": 8 }
+  },
+  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6, "centroid_abs": 1e-6 }
+}
