@@ -171,7 +171,7 @@
           "faces": 26,
           "edges": 62,
           "valid": true,
-          "runtime_s": 1.306
+          "runtime_s": 1.304
         },
         "smlibpy": {
           "ok": true,
@@ -185,7 +185,7 @@
           "faces": 30,
           "edges": 66,
           "valid": true,
-          "runtime_s": 0.207
+          "runtime_s": 0.206
         }
       }
     },
@@ -318,7 +318,7 @@
           "faces": 14,
           "edges": 32,
           "valid": true,
-          "runtime_s": 1.06
+          "runtime_s": 1.099
         },
         "smlibpy": {
           "ok": true,
@@ -332,7 +332,7 @@
           "faces": 14,
           "edges": 31,
           "valid": true,
-          "runtime_s": 0.123
+          "runtime_s": 0.106
         }
       }
     },
@@ -443,7 +443,7 @@
           "faces": 13,
           "edges": 27,
           "valid": true,
-          "runtime_s": 1.066
+          "runtime_s": 1.074
         },
         "smlibpy": {
           "ok": true,
@@ -457,7 +457,7 @@
           "faces": 13,
           "edges": 25,
           "valid": true,
-          "runtime_s": 0.106
+          "runtime_s": 0.13
         }
       }
     },
@@ -629,7 +629,7 @@
           "faces": 22,
           "edges": 65,
           "valid": true,
-          "runtime_s": 1.125
+          "runtime_s": 1.177
         },
         "smlibpy": {
           "ok": true,
@@ -643,7 +643,7 @@
           "faces": 23,
           "edges": 65,
           "valid": true,
-          "runtime_s": 0.187
+          "runtime_s": 0.149
         }
       }
     },
@@ -773,7 +773,7 @@
           "faces": 12,
           "edges": 33,
           "valid": true,
-          "runtime_s": 1.128
+          "runtime_s": 1.119
         },
         "smlibpy": {
           "ok": true,
@@ -787,7 +787,7 @@
           "faces": 13,
           "edges": 33,
           "valid": true,
-          "runtime_s": 0.154
+          "runtime_s": 0.151
         }
       }
     },
@@ -938,7 +938,7 @@
           "faces": 14,
           "edges": 42,
           "valid": true,
-          "runtime_s": 1.11
+          "runtime_s": 1.094
         },
         "smlibpy": {
           "ok": true,
@@ -952,7 +952,7 @@
           "faces": 14,
           "edges": 43,
           "valid": true,
-          "runtime_s": 0.149
+          "runtime_s": 0.15
         }
       }
     },
@@ -1064,7 +1064,7 @@
           "faces": 12,
           "edges": 24,
           "valid": true,
-          "runtime_s": 1.069
+          "runtime_s": 1.081
         },
         "smlibpy": {
           "ok": true,
@@ -1078,7 +1078,7 @@
           "faces": 12,
           "edges": 23,
           "valid": true,
-          "runtime_s": 0.111
+          "runtime_s": 0.085
         }
       }
     },
@@ -1250,7 +1250,7 @@
           "faces": 20,
           "edges": 48,
           "valid": true,
-          "runtime_s": 1.075
+          "runtime_s": 1.102
         },
         "smlibpy": {
           "ok": true,
@@ -1264,7 +1264,7 @@
           "faces": 20,
           "edges": 47,
           "valid": true,
-          "runtime_s": 0.099
+          "runtime_s": 0.093
         }
       }
     },
@@ -1418,7 +1418,7 @@
           "faces": 26,
           "edges": 60,
           "valid": true,
-          "runtime_s": 1.087
+          "runtime_s": 1.066
         },
         "smlibpy": {
           "ok": true,
@@ -1432,7 +1432,7 @@
           "faces": 26,
           "edges": 60,
           "valid": true,
-          "runtime_s": 0.093
+          "runtime_s": 0.09
         }
       }
     },
@@ -1563,7 +1563,7 @@
           "faces": 16,
           "edges": 37,
           "valid": true,
-          "runtime_s": 1.078
+          "runtime_s": 1.094
         },
         "smlibpy": {
           "ok": true,
@@ -1889,7 +1889,7 @@
           "faces": 15,
           "edges": 39,
           "valid": true,
-          "runtime_s": 1.063
+          "runtime_s": 1.067
         },
         "smlibpy": {
           "ok": true,
@@ -2070,7 +2070,7 @@
           "ok": false,
           "error": "Traceback (most recent call last):\n  File \"/home/w23x/CAD/harness/verify/measure.py\", line 161, in main\n    shape = load_shape(args.model)\n  File \"/home/w23x/CAD/harness/verify/measure.py\", line 27, in load_shape\n    ns = runpy.run_path(path, run_name=\"__model__\")\n  File \"<frozen runpy>\", line 294, in run_path\n  File \"<frozen runpy>\", line 98, in _run_module_code\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/home/w23x/CAD/harness/fuzz/cases/seed20261027_case013/model_b123d.py\", line 6, in <module>\n    p2 = Pos(38.32, 2.48, 35.45) * Cone(9, 9, 9)\n                                   ~~~~^^^^^^^^^\nOCP.OCP.Standard.Standard_DomainError: cone with two identic radii\n",
           "timeout": false,
-          "runtime_s": 1.035
+          "runtime_s": 1.06
         },
         "smlibpy": {
           "ok": true,
@@ -2084,7 +2084,7 @@
           "faces": 30,
           "edges": 90,
           "valid": true,
-          "runtime_s": 0.166
+          "runtime_s": 0.156
         }
       }
     },
@@ -2236,7 +2236,7 @@
           "faces": 16,
           "edges": 37,
           "valid": true,
-          "runtime_s": 1.111
+          "runtime_s": 1.132
         },
         "smlibpy": {
           "ok": true,
@@ -2250,7 +2250,7 @@
           "faces": 17,
           "edges": 37,
           "valid": true,
-          "runtime_s": 0.144
+          "runtime_s": 0.127
         }
       }
     },
@@ -2407,7 +2407,7 @@
           "faces": 26,
           "edges": 55,
           "valid": true,
-          "runtime_s": 1.109
+          "runtime_s": 1.07
         },
         "smlibpy": {
           "ok": true,
@@ -2421,7 +2421,7 @@
           "faces": 28,
           "edges": 57,
           "valid": true,
-          "runtime_s": 0.118
+          "runtime_s": 0.112
         }
       }
     },
@@ -2531,7 +2531,7 @@
           "faces": 14,
           "edges": 36,
           "valid": true,
-          "runtime_s": 1.107
+          "runtime_s": 1.074
         },
         "smlibpy": {
           "ok": true,
@@ -2545,7 +2545,7 @@
           "faces": 16,
           "edges": 40,
           "valid": true,
-          "runtime_s": 0.118
+          "runtime_s": 0.124
         }
       }
     },
@@ -2676,7 +2676,7 @@
           "faces": 16,
           "edges": 36,
           "valid": true,
-          "runtime_s": 1.084
+          "runtime_s": 1.089
         },
         "smlibpy": {
           "ok": true,
@@ -2690,7 +2690,7 @@
           "faces": 17,
           "edges": 39,
           "valid": true,
-          "runtime_s": 0.105
+          "runtime_s": 0.104
         }
       }
     },
@@ -2862,7 +2862,7 @@
           "faces": 17,
           "edges": 35,
           "valid": true,
-          "runtime_s": 1.093
+          "runtime_s": 1.095
         },
         "smlibpy": {
           "ok": true,
@@ -2876,7 +2876,7 @@
           "faces": 17,
           "edges": 32,
           "valid": true,
-          "runtime_s": 0.108
+          "runtime_s": 0.11
         }
       }
     },
@@ -2987,7 +2987,7 @@
           "faces": 6,
           "edges": 13,
           "valid": true,
-          "runtime_s": 1.082
+          "runtime_s": 1.083
         },
         "smlibpy": {
           "ok": true,
@@ -3155,7 +3155,7 @@
           "faces": 14,
           "edges": 33,
           "valid": true,
-          "runtime_s": 1.072
+          "runtime_s": 1.1
         },
         "smlibpy": {
           "ok": true,
@@ -3169,7 +3169,7 @@
           "faces": 14,
           "edges": 31,
           "valid": true,
-          "runtime_s": 0.105
+          "runtime_s": 0.101
         }
       }
     },
@@ -3279,7 +3279,7 @@
           "faces": 6,
           "edges": 6,
           "valid": false,
-          "runtime_s": 1.108
+          "runtime_s": 1.092
         },
         "smlibpy": {
           "ok": true,
@@ -3293,7 +3293,7 @@
           "faces": 7,
           "edges": 6,
           "valid": true,
-          "runtime_s": 0.143
+          "runtime_s": 0.12
         }
       }
     },
@@ -3423,7 +3423,7 @@
           "faces": 16,
           "edges": 42,
           "valid": true,
-          "runtime_s": 1.095
+          "runtime_s": 1.103
         },
         "smlibpy": {
           "ok": true,
@@ -3437,7 +3437,7 @@
           "faces": 17,
           "edges": 45,
           "valid": true,
-          "runtime_s": 0.11
+          "runtime_s": 0.109
         }
       }
     },
@@ -3569,7 +3569,7 @@
           "faces": 14,
           "edges": 27,
           "valid": true,
-          "runtime_s": 1.078
+          "runtime_s": 1.076
         },
         "smlibpy": {
           "ok": true,
@@ -3583,7 +3583,7 @@
           "faces": 14,
           "edges": 23,
           "valid": true,
-          "runtime_s": 0.108
+          "runtime_s": 0.115
         }
       }
     },
@@ -3736,7 +3736,7 @@
           "faces": 14,
           "edges": 47,
           "valid": true,
-          "runtime_s": 1.216
+          "runtime_s": 1.217
         },
         "smlibpy": {
           "ok": true,
@@ -3923,7 +3923,7 @@
           "faces": 23,
           "edges": 61,
           "valid": true,
-          "runtime_s": 1.177
+          "runtime_s": 1.17
         },
         "smlibpy": {
           "ok": true,
@@ -3937,7 +3937,7 @@
           "faces": 24,
           "edges": 62,
           "valid": true,
-          "runtime_s": 0.164
+          "runtime_s": 0.188
         }
       }
     },
@@ -4049,7 +4049,7 @@
           "faces": 9,
           "edges": 21,
           "valid": true,
-          "runtime_s": 1.096
+          "runtime_s": 1.094
         },
         "smlibpy": {
           "ok": true,
@@ -4063,7 +4063,7 @@
           "faces": 10,
           "edges": 22,
           "valid": true,
-          "runtime_s": 0.103
+          "runtime_s": 0.115
         }
       }
     },
@@ -4212,7 +4212,7 @@
           "ok": false,
           "error": "Traceback (most recent call last):\n  File \"/home/w23x/CAD/harness/verify/measure.py\", line 161, in main\n    shape = load_shape(args.model)\n  File \"/home/w23x/CAD/harness/verify/measure.py\", line 27, in load_shape\n    ns = runpy.run_path(path, run_name=\"__model__\")\n  File \"<frozen runpy>\", line 294, in run_path\n  File \"<frozen runpy>\", line 98, in _run_module_code\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/home/w23x/CAD/harness/fuzz/cases/seed20261027_case027/model_b123d.py\", line 7, in <module>\n    p3 = Pos(20.85, -39.2, 30.53) * Rot(0, 90, 0) * Cone(5, 5, 22)\n                                                    ~~~~^^^^^^^^^^\nOCP.OCP.Standard.Standard_DomainError: cone with two identic radii\n",
           "timeout": false,
-          "runtime_s": 1.063
+          "runtime_s": 1.068
         },
         "smlibpy": {
           "ok": true,
@@ -4354,7 +4354,7 @@
           "faces": 12,
           "edges": 34,
           "valid": true,
-          "runtime_s": 1.117
+          "runtime_s": 1.097
         },
         "smlibpy": {
           "ok": true,
@@ -4540,7 +4540,7 @@
           "faces": 22,
           "edges": 60,
           "valid": true,
-          "runtime_s": 1.116
+          "runtime_s": 1.111
         },
         "smlibpy": {
           "ok": true,
@@ -4554,7 +4554,7 @@
           "faces": 22,
           "edges": 57,
           "valid": true,
-          "runtime_s": 0.134
+          "runtime_s": 0.135
         }
       }
     },
@@ -4668,7 +4668,7 @@
           "faces": 24,
           "edges": 63,
           "valid": true,
-          "runtime_s": 1.067
+          "runtime_s": 1.075
         },
         "smlibpy": {
           "ok": true,
@@ -4682,7 +4682,7 @@
           "faces": 24,
           "edges": 62,
           "valid": true,
-          "runtime_s": 0.093
+          "runtime_s": 0.092
         }
       }
     }

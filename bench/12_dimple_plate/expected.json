@@ -1,0 +1,11 @@
+{
+  "description": "100x60x10 plate, three spherical dimples (r8/r6/r5) centered on the top face - hemisphere piercing cuts",
+  "metrics": {
+    "volume_mm3": 58213.480977658604,
+    "bbox_mm": [100, 60, 10],
+    "centroid_mm": [0.5076472734229642, 0.03029333835734485, -0.07226598189788813],
+    "solids": 1,
+    "valid": true
+  },
+  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6, "centroid_abs": 1e-6 }
+}
