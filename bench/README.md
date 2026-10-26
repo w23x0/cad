@@ -18,6 +18,7 @@ independent kernels. Metrics must match `expected.json` **and** each other.
 | `11_sector_ring` | 300° partial revolve (C-ring), angle-scaled Pappus + sector centroid | 7853.9816 |
 | `12_dimple_plate` | hemisphere dimple cuts (sphere centered on face), asymmetric truth | 58213.4810 |
 | `13_cavity_block` | sealed internal voids (sphere + torus cavities), multi-shell topology, faces metric | 44472.6309 |
+| `14_fillet_rail` | 4 long-edge fillets r4, square-minus-quarter-disc truth; r=t/2 tangency finding F-8 | 30901.2386 |
 
 ## Adding a part
 
@@ -41,7 +42,7 @@ kernel, rerun it, and regressions show up immediately.
 
 ## Current status
 
-13 parts, 26 implementations, all passing with relative error < 1e-6 (max observed
+14 parts, 28 implementations, all passing with relative error < 1e-6 (max observed
 ~9e-9 except `11_sector_ring` smlibpy partial revolve at 4.5e-7 — still within
 contract, no tolerance loosened anywhere).
 

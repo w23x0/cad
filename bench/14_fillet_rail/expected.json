@@ -1,0 +1,11 @@
+{
+  "description": "80x40x10 block, four long edges (parallel to X) filleted r4 - square-minus-quarter-disc prism removal",
+  "metrics": {
+    "volume_mm3": 30901.238596594936,
+    "bbox_mm": [80, 40, 10],
+    "centroid_mm": [0.0, 0.0, 0.0],
+    "solids": 1,
+    "valid": true
+  },
+  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6, "centroid_abs": 1e-6 }
+}

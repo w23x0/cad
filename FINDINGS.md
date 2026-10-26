@@ -103,3 +103,13 @@ bbox_abs=1e-6 契约是潜在威胁——当前 10 件的极值面全是平面/�
   跨内核比较空体时需先归一化（FZ-7）。
 - `Cone(r, r, h)`（零顶角半径）：b123d 抛 `Standard_DomainError`，smlibpy 归一化为
   圆柱（体积精确）——3 个 fuzz engine-error 的共同根因。
+
+## F-8 恰好相切的圆角：OCCT 失败，SMLib 精确成功（与 F-7 方向相反）
+
+`Box(80,40,10)` 四条长棱倒 r=5（= 板厚一半，上下圆角恰好在中面相切）：
+- build123d/OCCT：`ValueError: Failed creating a fillet … (StdFail_NotDone)`。
+- smlibpy 0.3.3：精确成功，V = 30283.185307179585（= 32000 − 4·80·(25 − 25π/4)，
+  逐位吻合），faces=8（上下顶面消失，与相切几何一致），valid。
+
+即 F-7 的"相切"行为差异在 fillet 上方向相反（这里 SMLib 更强）。r=5±ε 两内核
+预计都可行——退化点恰在 r=t/2。bench/14_fillet_rail 取 r=4 规避。

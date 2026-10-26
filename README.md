@@ -119,7 +119,8 @@ Client config (Claude Desktop / Claude Code, Codex, opencode, omp):
 
 Keep parts small (seconds, not minutes). See `bench/README.md` and the thirteen
 seeds: plate, L bracket, flange, thin wall, assembly, thread, gear, knob,
-loft transition, chamfer block, sector ring, dimple plate, cavity block.
+loft transition, chamfer block, sector ring, dimple plate, cavity block,
+fillet rail.
 
 ## License
 
