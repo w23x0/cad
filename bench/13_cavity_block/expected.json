@@ -1,0 +1,15 @@
+{
+  "description": "40x40x30 block with two sealed internal voids: sphere cavity r9 at (-10,0,0), torus cavity R6 r2 at (10,0,0)",
+  "metrics": {
+    "volume_mm3": 44472.63092945843,
+    "bbox_mm": [40, 40, 30],
+    "centroid_mm": [0.5801066845200037, 0.0, 0.0],
+    "solids": 1,
+    "valid": true
+  },
+  "engine_metrics": {
+    "build123d": { "faces": 8 },
+    "smlibpy": { "faces": 8 }
+  },
+  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6, "centroid_abs": 1e-6 }
+}

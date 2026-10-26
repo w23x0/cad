@@ -179,3 +179,7 @@ report.json 当前为 seed 20261027 基准批（复现：`fuzz.py`，无参数�
 **长批复跑（同日）**：seeds 3–7 × 50 = 250 cases → 161 一致 / 42 分歧 / 47 引擎报错。
 分歧全部落在已确立类型（体积漂移 1.5e-6 ~ 3.9e-5 的 F-1 带、bbox 的 F-5 家族、
 engine-error 的 Cone(r,r) 退化），无 >1e-3 的离群值，**无新 bug 类型**。
+
+**扫描批（seeds 8–12 × 50 = 250 cases）**：无新类型；seed 12 出现首个 smlibpy
+engine-error（报告被基准恢复覆盖，未留档——修复显示 bug 后未来批次会保留）。
+顺带修复 fuzz.py 显示路径的 None 格式化崩溃（smlibpy 引擎报错时）。

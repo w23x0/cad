@@ -360,7 +360,11 @@ def main() -> int:
 
         vol_b = entry["engines"].get("b123d", {}).get("volume_mm3")
         vol_s = entry["engines"].get("smlibpy", {}).get("volume_mm3")
-        vol_txt = "n/a" if vol_b is None else f"vol {vol_b:.3f}/{vol_s:.3f}"
+        vol_txt = (
+            "n/a"
+            if vol_b is None or vol_s is None
+            else f"vol {vol_b:.3f}/{vol_s:.3f}"
+        )
         flag = "" if entry["status"] == "match" else "  <-- " + "; ".join(entry["problems"][:2])
         print(f"[{idx:>3}] {entry['status']:<13} {vol_txt}{flag}")
 
