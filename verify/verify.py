@@ -53,7 +53,13 @@ ENGINES = {
     "smlibpy": ("smlibpy", _smlibpy_python()),
 }
 
-DEFAULT_TOL = {"volume_rel": 1e-6, "bbox_abs": 1e-6, "volume_abs": 1e-6, "centroid_abs": 1e-6}
+DEFAULT_TOL = {
+    "volume_rel": 1e-6,
+    "bbox_abs": 1e-6,
+    "volume_abs": 1e-6,
+    "centroid_abs": 1e-6,
+    "interference_abs": 1e-9,
+}
 
 
 def find_folders(paths):
@@ -116,6 +122,13 @@ def check_expected(metrics, expected, tol):
                 problems.append(
                     f"centroid {axis} {metrics['centroid_mm'][i]:.6f} != {float(tgt[i]):.6f}"
                 )
+    im = m.get("interference_mm3")
+    if im is not None:
+        tgt = im["value"] if isinstance(im, dict) else im
+        if abs(metrics.get("interference_mm3", 0.0) - float(tgt)) > tol["interference_abs"]:
+            problems.append(
+                f"interference {metrics.get('interference_mm3')} != {float(tgt)}"
+            )
     for key in ("solids", "faces", "edges"):
         if key in m:
             tgt = m[key]["value"] if isinstance(m[key], dict) else m[key]
@@ -137,6 +150,9 @@ def check_cross(metrics_a, metrics_b, tol):
             problems.append(f"cross bbox {axis} mismatch")
         if abs(metrics_a["centroid_mm"][i] - metrics_b["centroid_mm"][i]) > tol["centroid_abs"]:
             problems.append(f"cross centroid {axis} mismatch")
+    if "interference_mm3" in metrics_a and "interference_mm3" in metrics_b:
+        if abs(metrics_a["interference_mm3"] - metrics_b["interference_mm3"]) > tol["interference_abs"]:
+            problems.append("cross interference mismatch")
     if metrics_a["solids"] != metrics_b["solids"]:
         problems.append("cross solids mismatch")
     if metrics_a["valid"] != metrics_b["valid"]:

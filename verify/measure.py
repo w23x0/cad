@@ -148,6 +148,27 @@ def export_all(shape, engine: str, out_dir: str) -> dict:
     return files
 
 
+def interference_of(shape) -> float | None:
+    """Max pairwise intersection volume over the shape's solids (None if N/A).
+
+    Total volume alone cannot catch overlapping solids (both kernels sum
+    volumes), so multi-solid models get an explicit pairwise check. Empty
+    intersections come back as 0-volume parts on both engines.
+    """
+    solids = shape.solids()
+    n = len(solids)
+    if n < 2 or n > 8:
+        return None
+    worst = 0.0
+    for i in range(n):
+        for j in range(i + 1, n):
+            inter = solids[i] & solids[j]
+            # build123d returns None for a disjoint intersection
+            vol = 0.0 if inter is None else float(inter.volume)
+            worst = max(worst, vol)
+    return worst
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("model")
@@ -161,6 +182,9 @@ def main() -> int:
         shape = load_shape(args.model)
         engine = engine_of(shape)
         payload.update(metrics_of(shape, engine))
+        inter = interference_of(shape)
+        if inter is not None:
+            payload["interference_mm3"] = inter
         if not args.no_export:
             payload["files"] = export_all(shape, engine, args.out)
         payload["ok"] = True

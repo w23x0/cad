@@ -67,6 +67,9 @@ Write the volume from the **hand calculation**, not from a run. Optional
 `centroid_mm` (optional, volume centroid) catches models whose volume and bbox match
 but whose material distribution is wrong; every current part carries a hand-derived
 centroid in its `NOTES.md`.
+`interference_mm3` (multi-solid parts) is the max pairwise intersection volume of
+the solids — total volume alone cannot catch overlapping lumps because both
+kernels sum volumes; it must be 0 for the assembly parts.
 
 Models only expose `result = <shape>` (or `def build()`); the harness does the
 measuring and exporting. Generated files go to `bench/<part>/out/<engine>/`:
