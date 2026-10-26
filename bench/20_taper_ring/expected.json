@@ -1,0 +1,23 @@
+{
+  "description": "Ring (O20/O10) extruded 10 with 5-degree taper: outer cone narrows, bore widens; A(t) linear so centroid is exactly h/2",
+  "metrics": {
+    "volume_mm3": 1943.9138762841962,
+    "bbox_mm": [
+      20,
+      20,
+      10
+    ],
+    "centroid_mm": [
+      0.0,
+      0.0,
+      4.646520164860882
+    ],
+    "solids": 1,
+    "valid": true
+  },
+  "tolerance": {
+    "volume_rel": 1e-06,
+    "bbox_abs": 1e-06,
+    "centroid_abs": 1e-06
+  }
+}
