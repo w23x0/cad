@@ -120,10 +120,11 @@ Client config (Claude Desktop / Claude Code, Codex, opencode, omp):
 2. `model_b123d.py` and `model_smlibpy.py`, both assigning `result`.
 3. Run the verifier; when both kernels agree, put the hand value in `expected.json`.
 
-Keep parts small (seconds, not minutes). See `bench/README.md` and the eighteen
+Keep parts small (seconds, not minutes). See `bench/README.md` and the nineteen
 seeds: plate, L bracket, flange, thin wall, assembly, thread, gear, knob,
 loft transition, chamfer block, sector ring, dimple plate, cavity block,
-fillet rail, bearing shell, shaved cube, taper block, arc sweep.
+fillet rail, bearing shell, shaved cube, taper block, arc sweep,
+cone pocket plate.
 
 ## License
 

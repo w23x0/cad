@@ -292,17 +292,14 @@ def render_model(params: dict, engine_key: str) -> str:
     for i, p in enumerate(params["prims"]):
         lines.append(f"p{i} = {_prim_expr(p)}")
     lines.append("")
-    result = "p0"
+    lines.append("result = p0")
     for op in params["ops"]:
         if op["kind"] == "split":
             lines.append(_split_stmt(op, engine_key))
-            # `result` stays a plain variable reference for any following boolean
         else:
             i = op["prim"]
             sym = "+" if op["kind"] == "union" else "-"
-            result = f"{result} {sym} p{i}"
-            lines.append(f"result = {result}")
-            result = "result"
+            lines.append(f"result = result {sym} p{i}")
     lines.append("")
     return "\n".join(lines) + "\n"
 
@@ -364,6 +361,51 @@ def compare(ma: dict, mb: dict, tol: float) -> list[str]:
 
 
 # --------------------------------------------------------------------------
+# Divergence classifier (known-issue tagging, cf. fuzz/FINDINGS.md)
+# --------------------------------------------------------------------------
+
+F1_REL_LIMIT = 5e-5  # observed smlibpy overlapping-boolean volume-drift band
+
+
+def _prim_aabb(p: dict) -> list:
+    t, h = p["t"], p["half"]
+    return [(t[k] - h[k], t[k] + h[k]) for k in range(3)]
+
+
+def _aabbs_overlap(a: list, b: list, eps: float = 1e-9) -> bool:
+    return all(a[k][0] <= b[k][1] + eps and b[k][0] <= a[k][1] + eps for k in range(3))
+
+
+def _has_overlapping_union(params: dict) -> bool:
+    """True if any union in the op chain joins two primitives whose conservative
+    AABBs intersect (heuristic: rotated half-extents + containment clamp)."""
+    placed = [_prim_aabb(params["prims"][0])]
+    for op in params["ops"]:
+        if op["kind"] == "split":
+            continue
+        box = _prim_aabb(params["prims"][op["prim"]])
+        if op["kind"] == "union" and any(_aabbs_overlap(box, q) for q in placed):
+            return True
+        placed.append(box)
+    return False
+
+
+def classify_divergence(params: dict, rel: float, problems: list) -> list:
+    """Tag a divergence against the known catalogue.  bbox mismatches are the
+    OCCT not-tight bounding_box family (F-5/FZ-2); small relative volume drift
+    on overlapping-union cases is the smlibpy F-1 band; everything else is NEW
+    and must be minimized by hand."""
+    tags = []
+    if any(p.startswith("bbox") for p in problems):
+        tags.append("F-5-family")
+    if (any(p.startswith("volume") for p in problems)
+            and rel <= F1_REL_LIMIT
+            and _has_overlapping_union(params)):
+        tags.append("F-1-family")
+    return tags or ["NEW"]
+
+
+# --------------------------------------------------------------------------
 # Main
 # --------------------------------------------------------------------------
 
@@ -393,6 +435,7 @@ def main() -> int:
     }
     counts = {"match": 0, "divergence": 0, "engine-error": 0, "degenerate": 0}
     kind_hist: dict[str, int] = {}
+    tag_hist: dict[str, int] = {}
 
     print(f"fuzz: seed={args.seed} tol={args.tol:g} timeout={args.timeout:g}s cases={len(indices)}"
           f"  (b123d: {ENGINES['b123d'][1]}; smlibpy: {ENGINES['smlibpy'][1]})")
@@ -450,6 +493,14 @@ def main() -> int:
                 problems = compare(ma, mb, args.tol)
                 entry["problems"] = problems
                 entry["status"] = "divergence" if problems else "match"
+                if problems:
+                    va, vb = ma["volume_mm3"], mb["volume_mm3"]
+                    rel = abs(va - vb) / max(abs(va), abs(vb), 1e-12)
+                    tags = classify_divergence(params, rel, problems)
+                    entry["rel_volume_diff"] = rel
+                    entry["tags"] = tags
+                    for tag in tags:
+                        tag_hist[tag] = tag_hist.get(tag, 0) + 1
                 for p in problems:
                     kind = p.split()[0] + ("." + p.split()[1] if p.startswith("bbox") else "")
                     kind_hist[kind] = kind_hist.get(kind, 0) + 1
@@ -465,6 +516,8 @@ def main() -> int:
             else f"vol {vol_b:.3f}/{vol_s:.3f}"
         )
         flag = "" if entry["status"] == "match" else "  <-- " + "; ".join(entry["problems"][:2])
+        if entry.get("tags"):
+            flag += f"  [{','.join(entry['tags'])}]"
         print(f"[{idx:>3}] {entry['status']:<13} {vol_txt}{flag}")
 
         if not args.keep:
@@ -478,6 +531,7 @@ def main() -> int:
         **counts,
         "hangs": hangs,
         "problem_kinds": kind_hist,
+        "divergence_tags": tag_hist,
     }
     report_path = FUZZ_DIR / "report.json"
     report_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
@@ -489,6 +543,10 @@ def main() -> int:
     if kind_hist:
         print("  problem kinds:")
         for k, v in sorted(kind_hist.items()):
+            print(f"    {k:<24} {v}")
+    if tag_hist:
+        print("  divergence tags:")
+        for k, v in sorted(tag_hist.items()):
             print(f"    {k:<24} {v}")
     if hangs:
         print("  hangs (engine timed out):")

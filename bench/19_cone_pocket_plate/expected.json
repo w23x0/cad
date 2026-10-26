@@ -1,0 +1,23 @@
+{
+  "description": "80x40x10 plate, conical counterbore from Cone(4->9, h10) centered at origin: r=4 at z=0 opening to r=6.5 at the top face",
+  "metrics": {
+    "volume_mm3": 31558.86803155843,
+    "bbox_mm": [
+      80,
+      40,
+      10
+    ],
+    "centroid_mm": [
+      0.0,
+      0.0,
+      -0.04038914729363838
+    ],
+    "solids": 1,
+    "valid": true
+  },
+  "tolerance": {
+    "volume_rel": 1e-06,
+    "bbox_abs": 1e-06,
+    "centroid_abs": 1e-06
+  }
+}

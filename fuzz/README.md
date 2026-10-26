@@ -6,15 +6,36 @@
 
 ## 原理
 
-每个 case 由共享随机参数生成一个 CSG 设计：4-7 个基元
-（Box(w,d,h) / Cylinder(r,h) / Sphere(r) / Cone(r1,r2,h)），
-3-6 个 union/subtract 操作；平移采样于 [-40,40] 并钳制进 [-50,50]³，旋转角取自 {0,45,...,315}°
+每个 case 由共享随机参数生成一个 CSG 设计：4-8 个基元
+（Box(w,d,h) / Cylinder(r,h) / Sphere(r) / Cone(r1,r2,h) / 部分角旋转体 revolve），
+3-6 个 union/subtract/split 操作；平移采样于 [-40,40] 并钳制进 [-50,50]³，旋转角取自 {0,45,...,315}°
 （单轴）。同一份参数渲染成 `model_b123d.py` 与 `model_smlibpy.py`——**两者除 import 行外逐字节相同**
-（两内核共享 build123d 式代数模式：`Pos * Rot * Shape`、`+ - &`），所以任何指标差异都是内核差异。
+（两内核共享 build123d 式代数模式：`Pos * Rot * Shape`、`+ - &`），唯一例外是 split 调行的
+引擎拼写（几何与保留侧来自同一份共享参数，见下），所以任何指标差异都是内核差异。
+
+### 2026-10 算子池升级（seeds 13+ 生效）
+
+- **Cone(r,r) 退化消除**：|r1−r2|/max(r1,r2) < 1e-3 时重采样半径（FZ-1 的 b123d
+  `Standard_DomainError` 已归类为 API 域语义差，不再重复测量）。
+- **revolve 基元**（约 20% 的基元）：XZ 平面上的矩形/直角梯形轮廓
+  （局部 x = 半径 8..20，局部 y = 高度 ±8 内），绕 Axis.Z 转 {90,180,270,300}°。
+  两内核语义经手工探针确认一致：同起点（轮廓相位 +X）、同方向（绕 +Z 逆时针）、
+  同签名 `revolve(profile, Axis.Z, angle)`（探针 r1：90° bbox min/max 逐位一致；
+  解析 Pappus 仲裁 90/270° 两内核精确、300° smlibpy 带 ~5e-7 rel 噪声）。
+- **split 算子**（每操作 ~18% 概率）：对累计结果做平面剖分，平面过参考基元中部
+  （真实切到材料），法向取 {(0,0,1),(1,0,1),(1,0,0)}，保留侧 above/below 各半。
+  keep 语义对应（探针 s1/s2，含 45° 平面解析值 2890 逐位一致）：
+  **smlibpy `split(part, plane, keep="above")` ≡ b123d `split(part, bisect_by=plane, keep=Keep.TOP)`**
+  （"above"/TOP = 平面 z_dir 指向的一侧；"below" ≡ Keep.BOTTOM）——模型里仅这一行的
+  引擎拼写不同。keep="both" 不进池：smlibpy 返回元组、两半融回 1 solid，
+  b123d Keep.BOTH 返回 2-solid Compound（探针 s5），拓扑语义不可直接比。
+- **divergence 自动标签**：bbox 类 → `F-5-family`；体积相对差 ≤ 5e-5 且 union 链含
+  AABB 重叠 → `F-1-family`；其余 → `NEW`（逐条手工最小化，见 FINDINGS.md）。
 
 指标经 `../verify/measure.py` 协议采集（volume_mm3、bbox_mm、solids、valid；faces/edges 记录但不比较——
 拓扑计数在两内核间合法地不同）。比较器：体积相对差 > tol、bbox 各轴绝对差 > tol、solids 或 valid
 不等 → divergence；某内核报错/超时（30s）→ engine-error；双空（体积 <1e-3 mm³）→ degenerate 跳过。
+split 的空侧语义差（b123d 静默空体 vs smlibpy `ModelingError`，探针 case seed99/06）按 engine-error 记录。
 
 ## 用法
 

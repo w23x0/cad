@@ -23,6 +23,7 @@ independent kernels. Metrics must match `expected.json` **and** each other.
 | `16_shaved_cube` | tilted-plane split (45 deg corner shave) + Z bore, non-axisymmetric truth | 58858.4073 |
 | `17_taper_block` | taper extrude 10 deg, prismatoid truth (NOT pyramid-frustum formula) | 19394.4841 |
 | `18_arc_sweep` | arc sweep of a circle (three-quarter torus), Pappus-sweep truth, F-9 placement semantics | 7402.2033 |
+| `19_cone_pocket_plate` | conical counterbore cut, variable-radius hole integral | 31558.8680 |
 
 ## Adding a part
 
@@ -46,7 +47,7 @@ kernel, rerun it, and regressions show up immediately.
 
 ## Current status
 
-18 parts, 36 implementations; 18_arc_sweep carries the only loosened tolerance (bbox_abs 1e-5, smlibpy NURBS sweep surface), all passing with relative error < 1e-6 (max observed
+19 parts, 38 implementations; 18_arc_sweep carries the only loosened tolerance (bbox_abs 1e-5, smlibpy NURBS sweep surface), all passing with relative error < 1e-6 (max observed
 ~9e-9 except `11_sector_ring` smlibpy partial revolve at 4.5e-7 — still within
 contract, no tolerance loosened anywhere).
 
