@@ -1,0 +1,11 @@
+{
+  "description": "300-degree annular sector (C-ring): rect section radial 10..20, z -5..5, revolved 300 deg about Z",
+  "metrics": {
+    "volume_mm3": 7853.981633974483,
+    "bbox_mm": [40, 40, 10],
+    "centroid_mm": [-2.572868178635029, 1.4854461355243558, 0.0],
+    "solids": 1,
+    "valid": true
+  },
+  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6, "centroid_abs": 1e-6 }
+}

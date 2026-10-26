@@ -15,6 +15,7 @@ independent kernels. Metrics must match `expected.json` **and** each other.
 | `08_knob` | cone frustum + hemisphere stack, axial hole pattern, disjoint O-ring torus (2 solids) | 15697.4727 |
 | `09_loft_transition` | ruled loft square→rectangle, corner-matched, prismatoid truth | 17066.6667 |
 | `10_chamfer_block` | chamfer on 4 vertical edges, property-based edge selection | 47360.0000 |
+| `11_sector_ring` | 300° partial revolve (C-ring), angle-scaled Pappus + sector centroid | 7853.9816 |
 
 ## Adding a part
 
@@ -38,8 +39,9 @@ kernel, rerun it, and regressions show up immediately.
 
 ## Current status
 
-10 parts, 20 implementations, all passing with relative error < 1e-6 (max observed
-~9e-9). No tolerance loosened so far.
+11 parts, 22 implementations, all passing with relative error < 1e-6 (max observed
+~9e-9 except `11_sector_ring` smlibpy partial revolve at 4.5e-7 — still within
+contract, no tolerance loosened anywhere).
 
 ## Kernel findings
 
