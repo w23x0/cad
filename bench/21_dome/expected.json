@@ -1,0 +1,15 @@
+{
+  "description": "R15 sphere truncated by plane z=5 (top cap of height 10 removed) - spherical dome with cap-formula truth",
+  "metrics": {
+    "volume_mm3": 10471.975511965977,
+    "bbox_mm": [30, 30, 20],
+    "centroid_mm": [0.0, 0.0, -3.0],
+    "solids": 1,
+    "valid": true
+  },
+  "engine_metrics": {
+    "build123d": { "faces": 2 },
+    "smlibpy": { "faces": 2 }
+  },
+  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6, "centroid_abs": 1e-6 }
+}
