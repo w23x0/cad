@@ -110,7 +110,7 @@ def export_all(shape, engine: str, out_dir: str) -> dict:
             try:
                 import cairosvg
 
-                cairosvg.svg2png(url=path, write_to=png, scale=3.0)
+                cairosvg.svg2png(url=path, write_to=png, scale=3.0, background_color="white")
                 files["sheet_png"] = png
             except Exception:
                 conv = subprocess.run(

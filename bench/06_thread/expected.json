@@ -1,0 +1,10 @@
+{
+  "description": "Ø24x24 screw stock, 5 stacked annular V-grooves (depth 2, tool base width 3), z = -8..8 step 4",
+  "metrics": {
+    "volume_mm3": 10145.249875992638,
+    "bbox_mm": [24, 24, 24],
+    "solids": 1,
+    "valid": true
+  },
+  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6 }
+}

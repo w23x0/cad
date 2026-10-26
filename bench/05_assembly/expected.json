@@ -1,0 +1,10 @@
+{
+  "description": "4-solid exploded assembly: 80x50x8 plate, O16x40 shaft (1mm gap), O24/O16.4x10 clearance collar, 12x12x10 boss (1mm gap)",
+  "metrics": {
+    "volume_mm3": 43893.963714085396,
+    "bbox_mm": [80, 50, 49],
+    "solids": 4,
+    "valid": true
+  },
+  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6 }
+}

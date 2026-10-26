@@ -113,8 +113,8 @@ Client config (Claude Desktop / Claude Code, Codex, opencode, omp):
 2. `model_b123d.py` and `model_smlibpy.py`, both assigning `result`.
 3. Run the verifier; when both kernels agree, put the hand value in `expected.json`.
 
-Keep parts small (seconds, not minutes). See `bench/README.md` and the three seeds:
-plate, L bracket, flange.
+Keep parts small (seconds, not minutes). See `bench/README.md` and the seven
+seeds: plate, L bracket, flange, thin wall, assembly, thread, gear.
 
 ## License
 
