@@ -70,3 +70,36 @@ T = Torus(20, 2).moved(Pos(0, 0, 4))      # 中心圆恰在圆柱侧面柱面上
 ## F-3 接触共面实体两内核一致地融合为单实体（行为差异记录，非 bug）
 
 见 bench/05_assembly/NOTES.md 与 bench/README.md「Kernel findings」。
+
+---
+
+以下发现来自 `fuzz/` 跨内核 CSG 模糊测试（seed 20261027，30 cases：
+21 一致 / 6 分歧 / 3 引擎报错）。完整复现、归因与最小化过程见
+[`fuzz/FINDINGS.md`](fuzz/FINDINGS.md) 与 `fuzz/report.json`。
+
+## F-4 build123d/OCCT：球减柱布尔返回零体积无效壳
+
+`Sphere(6) − 绕 Y 旋转 90° 的 Cylinder(9,13)`（柱面与球面不相交，仅平端面切出球冠）：
+解析真值 π·h²(3R−h)/3 = 32.2299，smlibpy 精确；**OCCT 返回 vol=−0.0、valid=False 的
+空壳**。首个 build123d 侧实锤布尔 bug（fuzz case 21）。
+
+## F-5 build123d/OCCT：带内孔的裁剪曲面 bbox 不紧
+
+`Sphere(12) − Cylinder(5,12)`：体积一致（4.6e-7），bbox Y 24.0 vs 真值 ≈23.9506
+（smlibpy 与孔刃几何一致；OCCT 连 `AddOptimal` 也不收紧）。对 bench 的
+bbox_abs=1e-6 契约是潜在威胁——当前 10 件的极值面全是平面/整曲面，未触发；
+含裁剪曲面极值的新件要警惕（fuzz case 6）。
+
+## F-6 smlibpy：多 cell 融合静默丢 cell（F-1 家族新亚型）
+
+3-cell 部件与非穿透工具融合时，第三 cell 静默蒸发 6.327 mm³（2×/0.5×/0.25× 缩放
+全复现；不相交工具则全保留）。F-1 的"包含分类失效"之外的新失败模式（fuzz case 15）。
+
+## F-7 相切与空体的语义差异（非数值错误）
+
+- 相切穿透切割：OCCT 静默分裂成 4 lumps，SMLib 抛 `ModelingError`（fuzz case 1；
+  r=10.5 非相切对照两内核 1e-15 一致）。smlibpy 的"报错优于静默"是更安全的行为。
+- 空体表示：b123d `valid=True`/bbox 0 尺寸 vs smlibpy `valid=False`/bbox ±2e20，
+  跨内核比较空体时需先归一化（FZ-7）。
+- `Cone(r, r, h)`（零顶角半径）：b123d 抛 `Standard_DomainError`，smlibpy 归一化为
+  圆柱（体积精确）——3 个 fuzz engine-error 的共同根因。

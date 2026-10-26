@@ -1,0 +1,184 @@
+{
+  "seed": 20261027,
+  "tol": 1e-06,
+  "timeout_s": 30.0,
+  "cases": [
+    {
+      "index": 6,
+      "name": "seed20261027_case006",
+      "params": {
+        "seed": 20261027,
+        "index": 6,
+        "n_booleans": 5,
+        "prims": [
+          {
+            "kind": "sphere",
+            "args": [
+              12
+            ],
+            "t": [
+              -4.04,
+              -11.8,
+              -28.31
+            ],
+            "rot_axis": "Z",
+            "rot_deg": 45,
+            "half": [
+              16.970562748477143,
+              16.970562748477143,
+              12.0
+            ]
+          },
+          {
+            "kind": "sphere",
+            "args": [
+              9
+            ],
+            "t": [
+              -1.03,
+              -24.37,
+              -38.73
+            ],
+            "rot_axis": "Z",
+            "rot_deg": 315,
+            "half": [
+              12.727922061357855,
+              12.727922061357855,
+              9.0
+            ]
+          },
+          {
+            "kind": "cylinder",
+            "args": [
+              5,
+              12
+            ],
+            "t": [
+              -6.39,
+              -3.48,
+              -29.23
+            ],
+            "rot_axis": "Z",
+            "rot_deg": 225,
+            "half": [
+              7.0710678118654755,
+              7.0710678118654755,
+              6.0
+            ]
+          },
+          {
+            "kind": "sphere",
+            "args": [
+              4
+            ],
+            "t": [
+              -5.37,
+              -16.76,
+              -15.98
+            ],
+            "rot_axis": "X",
+            "rot_deg": 45,
+            "half": [
+              4.0,
+              5.65685424949238,
+              5.65685424949238
+            ]
+          },
+          {
+            "kind": "box",
+            "args": [
+              16,
+              19,
+              17
+            ],
+            "t": [
+              -13.29,
+              -8.0,
+              -28.96
+            ],
+            "rot_axis": "Y",
+            "rot_deg": 45,
+            "half": [
+              11.667261889578034,
+              9.5,
+              11.667261889578034
+            ]
+          },
+          {
+            "kind": "cylinder",
+            "args": [
+              4,
+              18
+            ],
+            "t": [
+              -12.11,
+              -20.66,
+              -40.99
+            ],
+            "rot_axis": "Z",
+            "rot_deg": 270,
+            "half": [
+              4.000000000000001,
+              4.000000000000001,
+              9.0
+            ]
+          }
+        ],
+        "ops": [
+          "subtract",
+          "subtract",
+          "subtract",
+          "union",
+          "subtract"
+        ]
+      },
+      "status": "divergence",
+      "problems": [
+        "bbox Y abs diff 3.579e-01 (b123d=25.657911167, smlibpy=25.300000000, tol=1e-06)",
+        "bbox Z abs diff 2.933e+00 (b123d=27.250512845, smlibpy=24.317261890, tol=1e-06)"
+      ],
+      "engines": {
+        "b123d": {
+          "ok": true,
+          "volume_mm3": 9603.454731200514,
+          "bbox_mm": [
+            32.917261889578036,
+            25.65791116662798,
+            27.25051284539319
+          ],
+          "solids": 1,
+          "faces": 14,
+          "edges": 42,
+          "valid": true,
+          "runtime_s": 1.152
+        },
+        "smlibpy": {
+          "ok": true,
+          "volume_mm3": 9603.454675694078,
+          "bbox_mm": [
+            32.91726188957803,
+            25.299999999999997,
+            24.31726188957803
+          ],
+          "solids": 1,
+          "faces": 14,
+          "edges": 43,
+          "valid": true,
+          "runtime_s": 0.157
+        }
+      }
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "match": 0,
+    "divergence": 1,
+    "engine-error": 0,
+    "degenerate": 0,
+    "hangs": [],
+    "problem_kinds": {
+      "bbox.Y": 1,
+      "bbox.Z": 1
+    }
+  }
+}

@@ -13,6 +13,8 @@ independent kernels. Metrics must match `expected.json` **and** each other.
 | `06_thread` | revolved V-grooves (Pappus truth); helical-sweep parity investigated | 10145.2499 |
 | `07_gear` | simplified straight-flank gear, polar pattern of lines+arcs, exact tooth-area integral | 15905.4873 |
 | `08_knob` | cone frustum + hemisphere stack, axial hole pattern, disjoint O-ring torus (2 solids) | 15697.4727 |
+| `09_loft_transition` | ruled loft square→rectangle, corner-matched, prismatoid truth | 17066.6667 |
+| `10_chamfer_block` | chamfer on 4 vertical edges, property-based edge selection | 47360.0000 |
 
 ## Adding a part
 
@@ -36,7 +38,7 @@ kernel, rerun it, and regressions show up immediately.
 
 ## Current status
 
-8 parts, 16 implementations, all passing with relative error < 1e-6 (max observed
+10 parts, 20 implementations, all passing with relative error < 1e-6 (max observed
 ~9e-9). No tolerance loosened so far.
 
 ## Kernel findings

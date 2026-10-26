@@ -1,0 +1,11 @@
+{
+  "description": "Ruled loft 40x40 square (z=-8) to 20x30 rectangle (z=+8), corner-matched, prismatoid truth",
+  "metrics": {
+    "volume_mm3": 17066.666666666667,
+    "bbox_mm": [40, 40, 16],
+    "centroid_mm": [0.0, 0.0, -1.25],
+    "solids": 1,
+    "valid": true
+  },
+  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6, "centroid_abs": 1e-6 }
+}

@@ -13,3 +13,6 @@ bench/*/out/
 .DS_Store
 .idea/
 .vscode/
+
+# fuzz case directories (regenerable from seed; report.json/FINDINGS.md stay)
+fuzz/cases/
