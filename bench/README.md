@@ -20,6 +20,8 @@ independent kernels. Metrics must match `expected.json` **and** each other.
 | `13_cavity_block` | sealed internal voids (sphere + torus cavities), multi-shell topology, faces metric | 44472.6309 |
 | `14_fillet_rail` | 4 long-edge fillets r4, square-minus-quarter-disc truth; r=t/2 tangency finding F-8 | 30901.2386 |
 | `15_bearing_shell` | plane split of a bored block (lower bearing shell), half-bore truth | 22869.0266 |
+| `16_shaved_cube` | tilted-plane split (45 deg corner shave) + Z bore, non-axisymmetric truth | 58858.4073 |
+| `17_taper_block` | taper extrude 10 deg, prismatoid truth (NOT pyramid-frustum formula) | 19394.4841 |
 
 ## Adding a part
 
@@ -43,7 +45,7 @@ kernel, rerun it, and regressions show up immediately.
 
 ## Current status
 
-15 parts, 30 implementations, all passing with relative error < 1e-6 (max observed
+17 parts, 34 implementations, all passing with relative error < 1e-6 (max observed
 ~9e-9 except `11_sector_ring` smlibpy partial revolve at 4.5e-7 — still within
 contract, no tolerance loosened anywhere).
 

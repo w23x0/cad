@@ -1,0 +1,11 @@
+{
+  "description": "40^3 cube, corner shaved by tilted plane x+z=30 (45 deg, edge-slant prism 10x10x40 removed), O10 Z through-bore",
+  "metrics": {
+    "volume_mm3": 58858.407346410204,
+    "bbox_mm": [40, 40, 40],
+    "centroid_mm": [-0.5663308749954876, 0.0, -0.5663308749954876],
+    "solids": 1,
+    "valid": true
+  },
+  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6, "centroid_abs": 1e-6 }
+}
