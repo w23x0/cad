@@ -317,3 +317,8 @@ result = split(s, bisect_by=Plane((0, 0, 0.07), (1, 0, 0), (0, 0, 1)), keep=Keep
 
 report.json 当前为 seed 20261027 基准批（升级后生成器首跑：25 match / 2 divergence
 （均 F-1-family）/ 3 engine-error（split 空侧语义差）；Cone 退化 engine-error 已绝迹）。
+
+**升级后稳定化批（seeds 21–23 × 60 = 180 cases）**：match 45/46/…、分歧 10–11/批、
+engine-error 4/批（均为 split 空侧 ModelingError 语义差，FZ-7 split 版），标签全部
+落在 F-1 / F-5 家族，**零 NEW**。升级后的算子池（含 revolve/split）行为稳定，
+结论与 300-case 主批一致。
