@@ -1,0 +1,13 @@
+{
+  "description": "80x40x10 plate + 20x20x10 boss contact-fused on its top face + 30x30x6 cover floating 3 mm above (disjoint): 2 solids, additive volumes",
+  "metrics": {
+    "volume_mm3": 41400.0,
+    "bbox_mm": [80, 40, 29],
+    "centroid_mm": [0.0, 0.0, 3.7053140096618358],
+    "solids": 2,
+    "faces": 17,
+    "valid": true,
+    "interference_mm3": 0.0
+  },
+  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6, "centroid_abs": 1e-6 }
+}

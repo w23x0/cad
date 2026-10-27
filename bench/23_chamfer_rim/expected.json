@@ -1,0 +1,12 @@
+{
+  "description": "80x40x10 plate, O20 through hole, top hole-rim chamfered 2 (45 deg, cone removal 128*pi/3)",
+  "metrics": {
+    "volume_mm3": 28724.366059857042,
+    "bbox_mm": [80, 40, 10],
+    "centroid_mm": [0.0, 0.0, -0.020269963042944386],
+    "solids": 1,
+    "faces": 8,
+    "valid": true
+  },
+  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6, "centroid_abs": 1e-6 }
+}

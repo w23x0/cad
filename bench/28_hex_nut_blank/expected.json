@@ -1,0 +1,15 @@
+{
+  "description": "Hex nut blank: hexagon across flats 24, height 10, D12 through hole",
+  "metrics": {
+    "volume_mm3": 3857.3329705060405,
+    "bbox_mm": [27.712812921102035, 24, 10],
+    "centroid_mm": [0.0, 0.0, 5.0],
+    "solids": 1,
+    "valid": true
+  },
+  "engine_metrics": {
+    "build123d": { "faces": 9 },
+    "smlibpy": { "faces": 9 }
+  },
+  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6, "centroid_abs": 1e-6 }
+}

@@ -1,0 +1,15 @@
+{
+  "description": "40x40x30 block, eccentric sealed sphere cavity r8 at (6,-5,1), offset through hole D8 at (-10,8) along Z",
+  "metrics": {
+    "volume_mm3": 44347.37494142627,
+    "bbox_mm": [40, 40, 30],
+    "centroid_mm": [0.04987175071914377, -0.03022530346614775, -0.048360485545836385],
+    "solids": 1,
+    "valid": true
+  },
+  "engine_metrics": {
+    "build123d": { "faces": 8 },
+    "smlibpy": { "faces": 8 }
+  },
+  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6, "centroid_abs": 1e-6 }
+}

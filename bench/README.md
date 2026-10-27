@@ -27,6 +27,12 @@ independent kernels. Metrics must match `expected.json` **and** each other.
 | `20_taper_ring` | tapered ring extrude (bore widens), linear-A(t) exact centroid | 1943.9139 |
 | `21_dome` | sphere truncated by plane, cap formula, centroid exactly (0,0,-3) | 10471.9755 |
 | `22_hole_rim_fillet` | fillet on a circular edge (hole rim), rho-weighted Pappus truth | 28802.0625 |
+| `23_chamfer_rim` | chamfer on a circular edge (hole rim), cone-segment removal | 28724.3661 |
+| `24_wedge_block` | Wedge primitive (kernel orientations differ 90°; Rot-aligned) | 24000.0000 |
+| `25_fusion_mix` | contact-fused boss + disjoint lid in one body (solids=2, FZ-8-safe) | 41400.0000 |
+| `26_eccentric_void` | eccentric sealed sphere void + off-axis through-hole | 44347.3749 |
+| `27_elliptical_tube` | elliptical ring sketch-extrude (FZ-11: OCCT solid-ellipse boolean imprecise) | 3769.9112 |
+| `28_hex_nut_blank` | RegularPolygon hexagon prism + bore (kernel vertex phases identical) | 3857.3330 |
 
 ## Adding a part
 
@@ -50,7 +56,7 @@ kernel, rerun it, and regressions show up immediately.
 
 ## Current status
 
-22 parts, 44 implementations; 18_arc_sweep carries the only loosened tolerance (bbox_abs 1e-5, smlibpy NURBS sweep surface), all passing with relative error < 1e-6 (max observed
+28 parts, 56 implementations; 18_arc_sweep carries the only loosened tolerance (bbox_abs 1e-5, smlibpy NURBS sweep surface), all passing with relative error < 1e-6 (max observed
 ~9e-9 except `11_sector_ring` smlibpy partial revolve at 4.5e-7 — still within
 contract, no tolerance loosened anywhere).
 

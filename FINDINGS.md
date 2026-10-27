@@ -144,3 +144,11 @@ F-1×25、F-5×16、**NEW×4**。split 探针结论：单侧 keep 两内核完�
 - **FZ-10（解释既有观测）**：smlibpy 300° 旋转体近似 −4.5e-7 rel（自报
   "volume uncertain ~1e-5"）——正是 bench/11_sector_ring 看到的漂移来源，
   该件 bbox_abs 放宽到 1e-5 的决定与此一致。
+
+## FZ-11（fuzz/建件期间发现，27 号件）OCCT 椭圆实体布尔不精确
+
+`extrude(Ellipse(15,10)) − extrude(Ellipse(10,5))`（solid 级布尔，两椭圆同轴）：
+b123d/OCCT 体积 rel ~7.4e-7、质心偏 (4e-6, −5e-6)——击穿 centroid_abs 1e-6；
+smlibpy 同布尔精确到 5e-17。**草图级环 + 单次拉伸两内核逐位精确**（27 号件采用）。
+椭圆草图本身两内核都是精确二次曲线（面积差 1.1e-13）。结论：OCCT 的椭圆线框
+布尔走近似路径；含椭圆的件优先草图级构造。

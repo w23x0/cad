@@ -1,0 +1,13 @@
+{
+  "description": "60x40x20 sharp wedge (right-triangle prism), high wall at -X, slope down toward +X, centered",
+  "metrics": {
+    "volume_mm3": 24000.0,
+    "bbox_mm": [60, 40, 20],
+    "centroid_mm": [-10.0, 0.0, -3.3333333333333335],
+    "solids": 1,
+    "faces": 5,
+    "edges": 9,
+    "valid": true
+  },
+  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6, "centroid_abs": 1e-6 }
+}
