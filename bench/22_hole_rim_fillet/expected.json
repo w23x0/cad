@@ -1,0 +1,11 @@
+{
+  "description": "80x40x10 plate, O20 through hole, top rim filleted r2 (torus-segment removal, rho-weighted Pappus truth)",
+  "metrics": {
+    "volume_mm3": 28802.062537701306,
+    "bbox_mm": [80, 40, 10],
+    "centroid_mm": [0.0, 0.0, -0.00892293807399439],
+    "solids": 1,
+    "valid": true
+  },
+  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6, "centroid_abs": 1e-6 }
+}

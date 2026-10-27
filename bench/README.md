@@ -26,6 +26,7 @@ independent kernels. Metrics must match `expected.json` **and** each other.
 | `19_cone_pocket_plate` | conical counterbore cut, variable-radius hole integral | 31558.8680 |
 | `20_taper_ring` | tapered ring extrude (bore widens), linear-A(t) exact centroid | 1943.9139 |
 | `21_dome` | sphere truncated by plane, cap formula, centroid exactly (0,0,-3) | 10471.9755 |
+| `22_hole_rim_fillet` | fillet on a circular edge (hole rim), rho-weighted Pappus truth | 28802.0625 |
 
 ## Adding a part
 
@@ -49,7 +50,7 @@ kernel, rerun it, and regressions show up immediately.
 
 ## Current status
 
-21 parts, 42 implementations; 18_arc_sweep carries the only loosened tolerance (bbox_abs 1e-5, smlibpy NURBS sweep surface), all passing with relative error < 1e-6 (max observed
+22 parts, 44 implementations; 18_arc_sweep carries the only loosened tolerance (bbox_abs 1e-5, smlibpy NURBS sweep surface), all passing with relative error < 1e-6 (max observed
 ~9e-9 except `11_sector_ring` smlibpy partial revolve at 4.5e-7 — still within
 contract, no tolerance loosened anywhere).
 
