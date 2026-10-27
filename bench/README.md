@@ -33,6 +33,9 @@ independent kernels. Metrics must match `expected.json` **and** each other.
 | `26_eccentric_void` | eccentric sealed sphere void + off-axis through-hole | 44347.3749 |
 | `27_elliptical_tube` | elliptical ring sketch-extrude (FZ-11: OCCT solid-ellipse boolean imprecise) | 3769.9112 |
 | `28_hex_nut_blank` | RegularPolygon hexagon prism + bore (kernel vertex phases identical) | 3857.3330 |
+| `29_silo` | hopper cone + cylinder + hemispherical dome, 3-way contact fuse | 62295.6879 |
+| `30_rounded_tube` | slot-profile ring extrude (stadium outer/inner), 10 faces | 10283.1853 |
+| `31_float_ring` | disjoint sphere + torus seat ring (2 solids, FZ-8 boundary probe) | 9242.0277 |
 
 ## Adding a part
 
@@ -56,7 +59,7 @@ kernel, rerun it, and regressions show up immediately.
 
 ## Current status
 
-28 parts, 56 implementations; 18_arc_sweep carries the only loosened tolerance (bbox_abs 1e-5, smlibpy NURBS sweep surface), all passing with relative error < 1e-6 (max observed
+31 parts, 62 implementations; 18_arc_sweep carries the only loosened tolerance (bbox_abs 1e-5, smlibpy NURBS sweep surface), all passing with relative error < 1e-6 (max observed
 ~9e-9 except `11_sector_ring` smlibpy partial revolve at 4.5e-7 — still within
 contract, no tolerance loosened anywhere).
 

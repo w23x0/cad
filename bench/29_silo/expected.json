@@ -1,0 +1,15 @@
+{
+  "description": "Silo: hopper frustum r20->8 h12 (z -12..0, big end up) + R20x30 shell (z 0..30) + R20 hemisphere (z 30..50), face-contact fused, 1 solid",
+  "metrics": {
+    "volume_mm3": 62295.6879255832,
+    "bbox_mm": [40, 40, 62],
+    "solids": 1,
+    "valid": true,
+    "centroid_mm": [0.0, 0.0, 18.61161915008069]
+  },
+  "engine_metrics": {
+    "build123d": { "faces": 4 },
+    "smlibpy": { "faces": 4 }
+  },
+  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6 }
+}

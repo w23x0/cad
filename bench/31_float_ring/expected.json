@@ -1,0 +1,16 @@
+{
+  "description": "Float ball r10 at origin + seat torus R16 r4 around it in the z=0 plane (2 mm clearance), disjoint 2-solid assembly",
+  "metrics": {
+    "volume_mm3": 9242.027658144143,
+    "bbox_mm": [40, 40, 20],
+    "solids": 2,
+    "valid": true,
+    "centroid_mm": [0.0, 0.0, 0.0],
+    "interference_mm3": 0.0
+  },
+  "engine_metrics": {
+    "build123d": { "faces": 2 },
+    "smlibpy": { "faces": 2 }
+  },
+  "tolerance": { "volume_rel": 1e-6, "bbox_abs": 1e-6 }
+}
