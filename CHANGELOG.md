@@ -17,3 +17,16 @@
 
 - Initial public-repo-ready state: two-kernel verify harness, MCP server,
   3 seed bench parts (plate, L bracket, flange).
+
+## 2026-10-27 (wave C)
+
+- bench: parts 23-31 via parallel agents (chamfer rim, wedge block,
+  fusion mix, eccentric void, elliptical tube, hex nut blank, silo,
+  rounded tube, float ring) — 31 parts, 62 implementations, all passing.
+- FINDINGS: FZ-11 (OCCT solid-level ellipse boolean imprecise);
+  FZ-8 boundary refined (needs >=3-body fuse chain); kernel semantic
+  notes on Wedge orientation, RegularPolygon phases, Slot equivalence.
+- fuzz: long scan partially completed (seeds 31-32 before quota kill);
+  new unminimized report: smlibpy ZeroDivisionError (seed32 c12).
+  Canonical report restored (seed 20261027).
+- Deferred by quota kill: smlibpy 0.5.0 full trial, verify --baseline.

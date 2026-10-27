@@ -186,7 +186,7 @@
           "faces": 16,
           "edges": 32,
           "valid": true,
-          "runtime_s": 1.168
+          "runtime_s": 1.377
         },
         "smlibpy": {
           "ok": true,
@@ -200,7 +200,7 @@
           "faces": 16,
           "edges": 31,
           "valid": true,
-          "runtime_s": 0.194
+          "runtime_s": 0.232
         }
       },
       "rel_volume_diff": 1.9251379951340945e-06,
@@ -354,7 +354,7 @@
           "faces": 25,
           "edges": 63,
           "valid": true,
-          "runtime_s": 1.108
+          "runtime_s": 1.284
         },
         "smlibpy": {
           "ok": true,
@@ -368,7 +368,7 @@
           "faces": 25,
           "edges": 63,
           "valid": true,
-          "runtime_s": 0.095
+          "runtime_s": 0.113
         }
       }
     },
@@ -492,7 +492,7 @@
           "faces": 13,
           "edges": 28,
           "valid": true,
-          "runtime_s": 1.132
+          "runtime_s": 1.278
         },
         "smlibpy": {
           "ok": true,
@@ -506,7 +506,7 @@
           "faces": 13,
           "edges": 26,
           "valid": true,
-          "runtime_s": 0.116
+          "runtime_s": 0.148
         }
       }
     },
@@ -707,7 +707,7 @@
           "faces": 31,
           "edges": 89,
           "valid": true,
-          "runtime_s": 1.123
+          "runtime_s": 1.344
         },
         "smlibpy": {
           "ok": true,
@@ -721,7 +721,7 @@
           "faces": 33,
           "edges": 93,
           "valid": true,
-          "runtime_s": 0.146
+          "runtime_s": 0.161
         }
       }
     },
@@ -854,13 +854,13 @@
           "faces": 0,
           "edges": 0,
           "valid": true,
-          "runtime_s": 1.083
+          "runtime_s": 1.209
         },
         "smlibpy": {
           "ok": false,
           "error": "Traceback (most recent call last):\n  File \"/home/w23x/CAD/harness/verify/measure.py\", line 182, in main\n    shape = load_shape(args.model)\n  File \"/home/w23x/CAD/harness/verify/measure.py\", line 27, in load_shape\n    ns = runpy.run_path(path, run_name=\"__model__\")\n  File \"<frozen runpy>\", line 287, in run_path\n  File \"<frozen runpy>\", line 98, in _run_module_code\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/home/w23x/CAD/harness/fuzz/cases/seed20261027_case005/model_smlibpy.py\", line 12, in <module>\n    result = split(result, Plane((-11.28, -33.16, -7.55), (1, 0, -1), (1, 0, 1)), keep=\"below\")\nsmlibpy._kernel.ModelingError: split: nothing of the part lies below the plane\n",
           "timeout": false,
-          "runtime_s": 0.102
+          "runtime_s": 0.106
         }
       }
     },
@@ -1022,7 +1022,7 @@
           "faces": 17,
           "edges": 42,
           "valid": true,
-          "runtime_s": 1.099
+          "runtime_s": 1.262
         },
         "smlibpy": {
           "ok": true,
@@ -1036,7 +1036,7 @@
           "faces": 18,
           "edges": 44,
           "valid": true,
-          "runtime_s": 0.128
+          "runtime_s": 0.168
         }
       }
     },
@@ -1156,7 +1156,7 @@
           "faces": 21,
           "edges": 39,
           "valid": true,
-          "runtime_s": 1.064
+          "runtime_s": 1.226
         },
         "smlibpy": {
           "ok": true,
@@ -1170,7 +1170,7 @@
           "faces": 21,
           "edges": 38,
           "valid": true,
-          "runtime_s": 0.154
+          "runtime_s": 0.119
         }
       }
     },
@@ -1365,7 +1365,7 @@
           "faces": 25,
           "edges": 68,
           "valid": true,
-          "runtime_s": 1.11
+          "runtime_s": 1.245
         },
         "smlibpy": {
           "ok": true,
@@ -1379,7 +1379,7 @@
           "faces": 26,
           "edges": 69,
           "valid": true,
-          "runtime_s": 0.122
+          "runtime_s": 0.126
         }
       }
     },
@@ -1551,7 +1551,7 @@
           "faces": 25,
           "edges": 63,
           "valid": true,
-          "runtime_s": 1.098
+          "runtime_s": 1.163
         },
         "smlibpy": {
           "ok": true,
@@ -1565,7 +1565,7 @@
           "faces": 25,
           "edges": 62,
           "valid": true,
-          "runtime_s": 0.115
+          "runtime_s": 0.125
         }
       }
     },
@@ -1713,7 +1713,7 @@
           "faces": 21,
           "edges": 49,
           "valid": true,
-          "runtime_s": 1.089
+          "runtime_s": 1.253
         },
         "smlibpy": {
           "ok": true,
@@ -1727,7 +1727,7 @@
           "faces": 21,
           "edges": 48,
           "valid": true,
-          "runtime_s": 0.111
+          "runtime_s": 0.138
         }
       }
     },
@@ -1916,7 +1916,7 @@
           "faces": 18,
           "edges": 40,
           "valid": true,
-          "runtime_s": 1.121
+          "runtime_s": 1.341
         },
         "smlibpy": {
           "ok": true,
@@ -1930,7 +1930,7 @@
           "faces": 21,
           "edges": 45,
           "valid": true,
-          "runtime_s": 0.166
+          "runtime_s": 0.216
         }
       }
     },
@@ -2081,7 +2081,7 @@
           "faces": 16,
           "edges": 48,
           "valid": true,
-          "runtime_s": 1.133
+          "runtime_s": 1.28
         },
         "smlibpy": {
           "ok": true,
@@ -2095,7 +2095,7 @@
           "faces": 17,
           "edges": 51,
           "valid": true,
-          "runtime_s": 0.113
+          "runtime_s": 0.127
         }
       }
     },
@@ -2288,7 +2288,7 @@
           "faces": 9,
           "edges": 15,
           "valid": true,
-          "runtime_s": 1.11
+          "runtime_s": 1.288
         },
         "smlibpy": {
           "ok": true,
@@ -2302,7 +2302,7 @@
           "faces": 9,
           "edges": 15,
           "valid": true,
-          "runtime_s": 0.139
+          "runtime_s": 0.151
         }
       }
     },
@@ -2466,7 +2466,7 @@
           "faces": 11,
           "edges": 24,
           "valid": true,
-          "runtime_s": 1.098
+          "runtime_s": 1.351
         },
         "smlibpy": {
           "ok": true,
@@ -2480,7 +2480,7 @@
           "faces": 11,
           "edges": 24,
           "valid": true,
-          "runtime_s": 0.152
+          "runtime_s": 0.164
         }
       }
     },
@@ -2647,7 +2647,7 @@
           "faces": 21,
           "edges": 51,
           "valid": true,
-          "runtime_s": 1.079
+          "runtime_s": 1.246
         },
         "smlibpy": {
           "ok": true,
@@ -2661,7 +2661,7 @@
           "faces": 21,
           "edges": 50,
           "valid": true,
-          "runtime_s": 0.101
+          "runtime_s": 0.136
         }
       }
     },
@@ -2781,7 +2781,7 @@
           "faces": 17,
           "edges": 39,
           "valid": true,
-          "runtime_s": 1.104
+          "runtime_s": 1.281
         },
         "smlibpy": {
           "ok": true,
@@ -2795,7 +2795,7 @@
           "faces": 17,
           "edges": 39,
           "valid": true,
-          "runtime_s": 0.112
+          "runtime_s": 0.147
         }
       }
     },
@@ -2942,7 +2942,7 @@
           "faces": 12,
           "edges": 24,
           "valid": true,
-          "runtime_s": 1.057
+          "runtime_s": 1.217
         },
         "smlibpy": {
           "ok": true,
@@ -2956,7 +2956,7 @@
           "faces": 12,
           "edges": 24,
           "valid": true,
-          "runtime_s": 0.087
+          "runtime_s": 0.094
         }
       }
     },
@@ -3141,7 +3141,7 @@
           "faces": 16,
           "edges": 43,
           "valid": true,
-          "runtime_s": 1.122
+          "runtime_s": 1.237
         },
         "smlibpy": {
           "ok": true,
@@ -3155,7 +3155,7 @@
           "faces": 16,
           "edges": 42,
           "valid": true,
-          "runtime_s": 0.137
+          "runtime_s": 0.131
         }
       }
     },
@@ -3274,7 +3274,7 @@
           "faces": 7,
           "edges": 17,
           "valid": true,
-          "runtime_s": 1.083
+          "runtime_s": 1.203
         },
         "smlibpy": {
           "ok": true,
@@ -3288,7 +3288,7 @@
           "faces": 7,
           "edges": 16,
           "valid": true,
-          "runtime_s": 0.108
+          "runtime_s": 0.117
         }
       }
     },
@@ -3460,7 +3460,7 @@
           "faces": 9,
           "edges": 15,
           "valid": true,
-          "runtime_s": 1.104
+          "runtime_s": 1.231
         },
         "smlibpy": {
           "ok": true,
@@ -3474,7 +3474,7 @@
           "faces": 9,
           "edges": 14,
           "valid": true,
-          "runtime_s": 0.143
+          "runtime_s": 0.159
         }
       }
     },
@@ -3597,7 +3597,7 @@
           "faces": 7,
           "edges": 13,
           "valid": true,
-          "runtime_s": 1.076
+          "runtime_s": 1.186
         },
         "smlibpy": {
           "ok": true,
@@ -3611,7 +3611,7 @@
           "faces": 7,
           "edges": 12,
           "valid": true,
-          "runtime_s": 0.102
+          "runtime_s": 0.138
         }
       }
     },
@@ -3755,7 +3755,7 @@
           "faces": 22,
           "edges": 51,
           "valid": true,
-          "runtime_s": 1.129
+          "runtime_s": 1.225
         },
         "smlibpy": {
           "ok": true,
@@ -3769,7 +3769,7 @@
           "faces": 22,
           "edges": 49,
           "valid": true,
-          "runtime_s": 0.149
+          "runtime_s": 0.157
         }
       }
     },
@@ -3905,7 +3905,7 @@
           "faces": 15,
           "edges": 39,
           "valid": true,
-          "runtime_s": 1.064
+          "runtime_s": 1.141
         },
         "smlibpy": {
           "ok": true,
@@ -3919,7 +3919,7 @@
           "faces": 15,
           "edges": 39,
           "valid": true,
-          "runtime_s": 0.09
+          "runtime_s": 0.1
         }
       }
     },
@@ -4089,7 +4089,7 @@
           "faces": 8,
           "edges": 20,
           "valid": true,
-          "runtime_s": 1.075
+          "runtime_s": 1.186
         },
         "smlibpy": {
           "ok": true,
@@ -4103,7 +4103,7 @@
           "faces": 8,
           "edges": 20,
           "valid": true,
-          "runtime_s": 0.112
+          "runtime_s": 0.124
         }
       }
     },
@@ -4288,7 +4288,7 @@
           "faces": 22,
           "edges": 46,
           "valid": true,
-          "runtime_s": 1.11
+          "runtime_s": 1.259
         },
         "smlibpy": {
           "ok": true,
@@ -4302,7 +4302,7 @@
           "faces": 23,
           "edges": 49,
           "valid": true,
-          "runtime_s": 0.148
+          "runtime_s": 0.17
         }
       }
     },
@@ -4421,7 +4421,7 @@
           "faces": 7,
           "edges": 10,
           "valid": true,
-          "runtime_s": 1.101
+          "runtime_s": 1.231
         },
         "smlibpy": {
           "ok": true,
@@ -4435,7 +4435,7 @@
           "faces": 7,
           "edges": 6,
           "valid": true,
-          "runtime_s": 0.117
+          "runtime_s": 0.123
         }
       }
     },
@@ -4603,7 +4603,7 @@
           "faces": 14,
           "edges": 38,
           "valid": true,
-          "runtime_s": 1.123
+          "runtime_s": 1.184
         },
         "smlibpy": {
           "ok": true,
@@ -4617,7 +4617,7 @@
           "faces": 14,
           "edges": 35,
           "valid": true,
-          "runtime_s": 0.132
+          "runtime_s": 0.159
         }
       },
       "rel_volume_diff": 1.1336500698968885e-06,
@@ -4758,13 +4758,13 @@
           "faces": 0,
           "edges": 0,
           "valid": true,
-          "runtime_s": 1.081
+          "runtime_s": 1.233
         },
         "smlibpy": {
           "ok": false,
           "error": "Traceback (most recent call last):\n  File \"/home/w23x/CAD/harness/verify/measure.py\", line 182, in main\n    shape = load_shape(args.model)\n  File \"/home/w23x/CAD/harness/verify/measure.py\", line 27, in load_shape\n    ns = runpy.run_path(path, run_name=\"__model__\")\n  File \"<frozen runpy>\", line 287, in run_path\n  File \"<frozen runpy>\", line 98, in _run_module_code\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/home/w23x/CAD/harness/fuzz/cases/seed20261027_case028/model_smlibpy.py\", line 10, in <module>\n    result = split(result, Plane((13.87, -1.37, -38.76), (1, 0, -1), (1, 0, 1)), keep=\"above\")\nsmlibpy._kernel.ModelingError: split: nothing of the part lies above the plane\n",
           "timeout": false,
-          "runtime_s": 0.094
+          "runtime_s": 0.109
         }
       }
     },
@@ -4950,13 +4950,13 @@
           "faces": 0,
           "edges": 0,
           "valid": true,
-          "runtime_s": 1.078
+          "runtime_s": 1.232
         },
         "smlibpy": {
           "ok": false,
           "error": "Traceback (most recent call last):\n  File \"/home/w23x/CAD/harness/verify/measure.py\", line 182, in main\n    shape = load_shape(args.model)\n  File \"/home/w23x/CAD/harness/verify/measure.py\", line 27, in load_shape\n    ns = runpy.run_path(path, run_name=\"__model__\")\n  File \"<frozen runpy>\", line 287, in run_path\n  File \"<frozen runpy>\", line 98, in _run_module_code\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/home/w23x/CAD/harness/fuzz/cases/seed20261027_case029/model_smlibpy.py\", line 17, in <module>\n    result = split(result, Plane((-45.62, 26.77, 17.69), (1, 0, -1), (1, 0, 1)), keep=\"below\")\nsmlibpy._kernel.ModelingError: split: nothing of the part lies below the plane\n",
           "timeout": false,
-          "runtime_s": 0.106
+          "runtime_s": 0.118
         }
       }
     },
@@ -5076,7 +5076,7 @@
           "faces": 16,
           "edges": 36,
           "valid": true,
-          "runtime_s": 1.07
+          "runtime_s": 1.231
         },
         "smlibpy": {
           "ok": true,
@@ -5090,7 +5090,7 @@
           "faces": 16,
           "edges": 35,
           "valid": true,
-          "runtime_s": 0.098
+          "runtime_s": 0.109
         }
       }
     }

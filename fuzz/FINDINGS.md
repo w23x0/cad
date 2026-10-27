@@ -322,3 +322,31 @@ report.json 当前为 seed 20261027 基准批（升级后生成器首跑：25 ma
 engine-error 4/批（均为 split 空侧 ModelingError 语义差，FZ-7 split 版），标签全部
 落在 F-1 / F-5 家族，**零 NEW**。升级后的算子池（含 revolve/split）行为稳定，
 结论与 300-case 主批一致。
+
+---
+
+## 【草稿·进行中】长扫描 seeds 31–40（每 2 批落一次盘）
+
+长批（seeds 31..40 × 60）正在进行；以下为中间统计，跑完 10 批后在正式附录汇总。
+
+| 批次 | 一致 | 分歧 | 引擎报错 | 退化 | 标签 F-1/F-5/NEW | NEW case |
+|---|---|---|---|---|---|---|
+| seed 31 | 47 | 7 | 6 | 0 | 2 / 3 / 3 | 15, 34, 42 |
+| seed 32 | 51 | 3 | 6 | 0 | 0 / 1 / 2 | 32, 59 |
+| seed 33 | 52 | 6 | 2 | 0 | 3 / 2 / 1 | 2 |
+
+中间观察（待最小化确认）：
+- **NEW 密集**：前 3 批已 6 例 NEW（主批 300 例才 4 例），其中 seed32 c59 / c32
+  onset 都在**锥∪锥重叠并**（rel 2.9e-4 / 2.8e-4，超出 F-1 带 ~10×）。
+- **新 engine-error 类型**：① b123d `ValueError: Dimensions of objects to subtract
+  from are inconsistent`——多数为已归档 split 空侧语义差的**连锁表现**（b123d 静默
+  空体后下一步减法才炸；seed31 c2），但 seed31 c54 无 split、是"空基体减法"直接炸
+  （球被盒完全包住 → `empty - p` → b123d 抛 ValueError，smlibpy 静默返回空）；
+  ② smlibpy **`ZeroDivisionError: division by zero`**（seed32 c12，Vector 归一化除零，
+  未受控异常）——待最小化。
+- smlibpy split 空侧 ModelingError 仍是大头（已归档，FZ-7 split 版）；
+  seed32 c2 smlibpy fuse 相切 KernelError（FZ-5 家族）。
+
+
+> 注：本附录由后台代理在配额中断前写入，seeds 31–32 数据完整；
+> smlibpy ZeroDivisionError（seed32 c12）未及最小化，保留为待办。
