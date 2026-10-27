@@ -183,3 +183,137 @@ engine-error 的 Cone(r,r) 退化），无 >1e-3 的离群值，**无新 bug 类
 **扫描批（seeds 8–12 × 50 = 250 cases）**：无新类型；seed 12 出现首个 smlibpy
 engine-error（报告被基准恢复覆盖，未留档——修复显示 bug 后未来批次会保留）。
 顺带修复 fuzz.py 显示路径的 None 格式化崩溃（smlibpy 引擎报错时）。
+
+---
+
+## 批次附录（2026-10-27 第二次：算子池升级后，seeds 13–17）
+
+**算子池变更**（对 seeds 13+ 及其后所有批次生效；历史批次的 13 以下 seed 数字不可跨池比较）：
+
+1. **Cone(r,r) 退化消除**：生成 Cone 时 |r1−r2|/max(r1,r2) < 1e-3 即重采样半径。
+   FZ-1（b123d `Standard_DomainError` vs smlibpy 归一化圆柱）已归类为 API 域语义差，
+   不再让生成器重复制造该 engine-error。效果：本 300 例 **b123d engine-error = 0**
+   （升级前每 30 例约 3 例）。
+2. **新增 revolve 基元**（基元抽取 ~20% 权重）：XZ 平面矩形/直角梯形轮廓
+   （局部 x=半径 8..20，局部 y=高度 ±8 内），绕 Axis.Z 转 {90,180,270,300}°。
+   **手工探针结论（revolve）**：两内核签名相同 `revolve(profile, Axis.Z, angle)`，
+   同起点（轮廓相位 +X）、同方向（绕 +Z 逆时针）——90° 探针 bbox min/max 逐位一致
+   （min (0,0,2)、max (15,15,6)）；`Pos*Rot*revolve` 链两内核一致；90/180/270° 两内核
+   体积皆精确到机器精度（解析 annulus 公式仲裁），300° 见 FZ-10。语义完全可比，入池。
+3. **新增 split 算子**（每操作 ~18% 概率）：对累计结果做平面剖分；平面过参考基元中部
+   （真实穿体），z_dir ∈ {(0,0,1),(1,0,1),(1,0,0)}，x_dir 取垂直向量，保留侧
+   above/below 各半。**手工探针结论（split）**：
+   - keep 映射：**smlibpy `split(part, plane, keep="above")` ≡ b123d
+     `split(part, bisect_by=plane, keep=Keep.TOP)`**（above/TOP = 平面 z_dir 指向侧；
+     "below" ≡ Keep.BOTTOM）。轴对齐探针（Box(20,20,20) 截 z=5：2000/6000）与 45° 平面
+     （解析 2890）两内核逐位一致；平面穿并集体、多 cell（2 离散盒 → 2 solids/1000）
+     亦逐位一致。**唯一源码差异**是这一行的引擎拼写（几何与保留侧来自同一份共享参数）。
+   - keep="both" 不入池：smlibpy 返回 (above, below) 元组、两半融回 **1 solid**；
+     b123d Keep.BOTH 返回 **2-solid Compound**（体积/bbox 一致、solids 1≠2）——
+     拓扑语义不可直接比，生成器只取单侧。
+4. **divergence 自动标签**：bbox 类 → `F-5-family`；体积相对差 ≤ 5e-5 且 union 链含
+   AABB 重叠 → `F-1-family`；其余 → `NEW`（逐条手工最小化，见 FZ-8/9/10）。
+
+### 批次统计（tol 1e-6，单内核超时 30s，总墙钟 ~11 min，无 hang）
+
+| 批次 | cases | 一致 | 分歧 | 引擎报错 | 退化 | 标签 F-1/F-5/NEW |
+|---|---|---|---|---|---|---|
+| seed 13 | 60 | 47 | 11 | 2 | 0 | 5 / 5 / 1 |
+| seed 14 | 60 | 47 | 12 | 1 | 0 | 8 / 3 / 1 |
+| seed 15 | 60 | 50 | 7 | 3 | 0 | 4 / 2 / 1 |
+| seed 16 | 60 | 49 | 8 | 3 | 0 | 3 / 4 / 1 |
+| seed 17 | 60 | 49 | 7 | 4 | 0 | 5 / 2 / 0 |
+| **合计** | **300** | **242** | **45** | **13** | **0** | **25 / 16 / 4** |
+
+问题种类直方图（问题条数，非 case 数）：volume 32、bbox.X 8、bbox.Y 7、bbox.Z 7、
+solids 4、valid 3、engine-error:smlibpy 13。确定性：seed 99 双跑 report.json
+除 runtime_s 外逐字节一致。
+
+engine-error 全部在 smlibpy 侧：12 例 = split 空侧语义差（见下），1 例（seed17 c19）
+= FZ-5 相切 `ModelingError` 家族（fuse 阶段 "operands may touch only ... tangentially"）。
+
+### split 空侧语义差（engine-error 噪声源，FZ-7 的 split 版，不占 NEW）
+
+keep 侧无材料时：**b123d 静默返回空体（0 solids、valid=True、vol 0）**；smlibpy 抛
+`ModelingError: split: nothing of the part lies above/below the plane`。本批 12/300 ≈ 4%
+的 case 撞上（split 平面穿过被 subtract 掏空的参考基元区）。方向与 FZ-5 相同：
+smlibpy 报错优于 b123d 静默；下游若消费 b123d 的空 split 结果会被 0 尺寸 bbox 毒害。
+按 engine-error 记录，不深挖。
+
+### FZ-8 smlibpy：并集静默丢弃无关 cell——最小触发不需要"切出的 cell"（NEW ×2：seed13 c32、seed15 c33）
+
+最小复现（圆整参数，canonical）：
+
+```python
+A = Pos(-25, 10, -31) * Cylinder(5, 4)
+B = Pos(-16, 19, -26) * Box(10, 10, 10)
+tool = Pos(-13, 20, -17) * Box(12, 12, 12)
+result = A + B + tool
+```
+
+- 解析/b123d：**2882.159265、2 solids**（= 1000 + 314.159 + 1728 − 160 tool∩B）。
+- smlibpy：**2568.000000、1 solid** —— A 的 314.159 mm³（π·5²·4）**整段蒸发**，Δ 恰等于 A。
+- 触发条件（逐因子最小化）：A 与 B 实体不相交，但 **B 的 AABB 三轴全部与 A 的 AABB 交错**
+  （B 的角插进圆柱 AABB 的空角——三轴交错而实体不相交只有曲面体才可能）；tool 与 B 融合。
+  对照：AABB 2 轴交错不触发；对角布置（0 轴交错）在 0.5..16 mm 全部间距不触发；
+  A 为 box 时 pre 直接 1 cell 无法构成 2-cell 前提。
+- **构造来历敏感**：同一几何的 A 若来自 `split(...)`（平面剖分产物）则**幸存**
+  （2882.159265 正确）——同形状不同来历，结果不同。但真实 case（seed13 c32）里
+  split 产物的 lump 同样被丢，说明来历只是调制因素，不是保命符。
+- seed15 c33 同型：`+p3`（球）时 smlibpy 丢掉整个 `(p0−p1)` lump，Δ = 1991.093 =
+  pre 中该 lump 体积的精确值；b123d 3 cells/11558.544 vs smlibpy 2 cells/9567.537。
+- 归类：**F-6/FZ-4 家族**（融合丢 cell）的**新最小触发**——不再需要"被切出的曲面
+  cell"，普通不相交圆柱即可。与 F-1"包含/相交分类失效"的 bbox 级误判嫌疑自洽
+  （三轴 AABB 交错≈bbox 相交，内核可能据此走了错误的相交/包含分支）。分类器按约定打
+  NEW（体积差 10.9%/17.2% 远超 5e-5 阈值），人工归因后归 F-6 家族。
+
+### FZ-9 build123d/OCCT：球冠 cut 体积随球面参数化朝向（Rot）变化（NEW ×1：seed16 c16）
+
+最小复现（canonical，纯球-平面切割，无布尔链）：
+
+```python
+s = Rot(0, 90, 0) * Sphere(6)
+result = split(s, bisect_by=Plane((0, 0, 0.07), (1, 0, 0), (0, 0, 1)), keep=Keep.TOP)
+```
+
+- 解析（球冠 V = π·h²(3R−h)/3, h=5.93）= **444.472888 = smlibpy 逐位**；
+  **b123d = 444.537877（+0.064990，+1.46e-4 rel）**。两内核均 1 solid / 2 faces / valid。
+- Rot 扫描（同一球、同一平面）：(0,0,0) 精确、**(0,90,0) +1.46e-4、(90,0,0) −1.65e-3**、
+  (0,45,0) −4e-8、(0,0,90) 与 (0,180,0) 精确。位置无关（平移到原点同样 +0.064990）；
+  平面原点 xy 无关；切割深度 0..4 mm 在未旋转球上全精确。
+- 归因：**build123d/OCCT 侧（几何层）**。球-平面布尔结果依赖球面的 UV 参数化朝向
+  （切平面相对球面局部赤道/极点/缝合线的位置改变数值路径）；smlibpy 对所有朝向精确。
+- 链路：case16 的 revolve 无关——p0 = `Pos·Rot(0,90,0)·Sphere(6)`（生成器随机 Rot），
+  sphere∪sphere 体积两内核本一致（2.4e-8 rel），final split（平面过 p0 球心上方 0.07）
+  后 cap 体积差 0.065 mm³；`−p2` 是 no-op（锥完全在材料外）。
+- 对 bench 的威胁：凡球体经随机 Rot 再做 cut/测量体积的件，OCCT 可能带 1e-4~1e-3
+  相对误差；bbox/faces/valid 均正常，纯体积错。
+
+### FZ-10 smlibpy：300° 部分角旋转体体积近似（NEW ×1：seed14 c31，轻微）
+
+- 角度扫描（annulus r∈[8,16]、z∈[−4,4]，解析 π·(16²−8²)·8·θ/360）：
+  90/180/270° 两内核皆精确到机器精度；**300° smlibpy −4.53e-7 rel**（b123d +3.4e-16 精确）。
+- case31 链路：300° revolve 基元（梯形轮廓）源头差 3.7e-7 rel（957.192312 vs 957.192667），
+  后续 4 次切割把体积缩到 11.27 mm³，**相对差放大到 2.5e-6 > tol 1e-6** → divergence。
+  smlibpy 同时自报 RuntimeWarning "faces ... do not meet exactly (gaps), volume
+  uncertain by about 1e-5"——与观测一致的自知近似。
+- 归类：smlibpy 侧近似精度（非拓扑/非语义），体量大时低于 tol；生成器保留 300°
+  （体积放大效应反而是有效的灵敏度探针）。
+
+### 结论
+
+- 新增算子探针阶段全部可比（revolve 完全、split 单侧完全），没有"语义差太大不可比"
+  而被拒收的算子；keep="both" 因拓扑不可比排除出池（见算子池变更 3）。
+- 4 例 NEW 全部定因：FZ-8（smlibpy 丢 cell，F-6 家族新触发，2 例）、FZ-9（b123d 球冠
+  Rot 敏感体积误差，1 例，**增量价值最高**）、FZ-10（smlibpy 300° 近似，1 例，轻微）。
+- FZ-9 建议后续：bench 侧含球+cut 的件若报体积不齐，先查球面 Rot。
+
+复现命令（本附录批次）：
+
+```bash
+/home/w23x/CAD/envs/cad/bin/python fuzz/fuzz.py --seed 13 --cases 60 --no-strict   # ... 14..17
+/home/w23x/CAD/envs/cad/bin/python fuzz/fuzz.py                                    # 基准 seed 20261027 ×30
+```
+
+report.json 当前为 seed 20261027 基准批（升级后生成器首跑：25 match / 2 divergence
+（均 F-1-family）/ 3 engine-error（split 空侧语义差）；Cone 退化 engine-error 已绝迹）。
